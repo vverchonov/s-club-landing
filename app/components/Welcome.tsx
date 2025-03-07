@@ -86,7 +86,7 @@ const Welcome = () => {
                 <Link href="/lap-dance" className="text-white hover:text-red-500 transition-colors"> приватними танцями</Link> від наших міжнародних артисток.
               </p>
               <p>
-                Незабутні враження чекають на вас у <span className="text-white">S Club</span>, які ви будете пам'ятати довгий час.
+                Незабутні враження чекають на вас у <span className="text-white">S Club</span>, які ви будете пам&apos;ятати довгий час.
                 Відвідайте нас сьогодні та дозвольте собі спокуситися нашою унікальною атмосферою!
               </p>
             </div>

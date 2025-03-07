@@ -33,7 +33,7 @@ const Contact = () => {
                 Наш простір ідеально підходить для проведення особливих подій у вишуканій атмосфері.
               </p>
               <p className="text-lg text-gray-300">
-                Зв'яжіться з нами за телефоном, або заповніть форму зворотного зв'язку, і ми обговоримо всі деталі вашого майбутнього заходу.
+                Зв&apos;яжіться з нами за телефоном, або заповніть форму зворотного зв&apos;язку, і ми обговоримо всі деталі вашого майбутнього заходу.
                 Наша команда допоможе створити ідеальний сценарій вечора саме для вас.
               </p>
             </div>
@@ -44,7 +44,7 @@ const Contact = () => {
             <div>
               <h2 className="text-red-500 text-xl mb-4">КОНТАКТНА ІНФОРМАЦІЯ</h2>
               <h3 className="text-4xl md:text-5xl font-serif mb-12">
-                ЗАВЖДИ НА ЗВ'ЯЗКУ
+                ЗАВЖДИ НА ЗВ&apos;ЯЗКУ
               </h3>
 
               <div className="space-y-8">
@@ -111,7 +111,7 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Ім'я
+                    Ім&apos;я
                   </label>
                   <input
                     type="text"
