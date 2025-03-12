@@ -9,8 +9,9 @@ const Navigation = () => {
   const navItems = [
     { name: 'ГОЛОВНА', href: '#home' },
     { name: 'КЛУБ', href: '#club' },
-    { name: 'ГАЛЕРЕЯ', href: '#gallery' },
+    { name: 'МЕНЮ', href: '#menu' },
     { name: 'ВІДГУКИ', href: '#testimonials' },
+    { name: 'НОВИНИ', href: '#news' },
     { name: 'КОНТАКТИ', href: '#contact' },
   ]
 
