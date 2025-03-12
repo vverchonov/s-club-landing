@@ -88,7 +88,6 @@ const Testimonials = () => {
                 isVisible ? 'opacity-100' : 'opacity-0'
               }`}
             >
-              <div className="text-6xl md:text-7xl xl:text-8xl font-serif mb-8">{"&apos;&apos;"}</div>
               <p className="text-2xl md:text-3xl xl:text-4xl font-serif mb-8">
                 {testimonials[currentIndex].text}
               </p>
