@@ -12,6 +12,8 @@ const FadeIn = ({ children, delay = 0 }: FadeInProps) => {
   const elementRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const currentElement = elementRef.current
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         // When element enters viewport
@@ -21,8 +23,8 @@ const FadeIn = ({ children, delay = 0 }: FadeInProps) => {
             setIsVisible(true)
           }, delay)
           // Unobserve after triggering
-          if (elementRef.current) {
-            observer.unobserve(elementRef.current)
+          if (currentElement) {
+            observer.unobserve(currentElement)
           }
         }
       },
@@ -34,13 +36,13 @@ const FadeIn = ({ children, delay = 0 }: FadeInProps) => {
       }
     )
 
-    if (elementRef.current) {
-      observer.observe(elementRef.current)
+    if (currentElement) {
+      observer.observe(currentElement)
     }
 
     return () => {
-      if (elementRef.current) {
-        observer.unobserve(elementRef.current)
+      if (currentElement) {
+        observer.unobserve(currentElement)
       }
     }
   }, [delay])

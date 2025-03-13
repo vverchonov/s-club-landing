@@ -2,9 +2,12 @@
 
 import Image from 'next/image'
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const pathname = usePathname()
+  const isMainPage = pathname === '/'
 
   const navItems = [
     { name: 'ГОЛОВНА', href: '#home' },
@@ -12,15 +15,28 @@ const Navigation = () => {
     { name: 'МЕНЮ', href: '#menu' },
     { name: 'ВІДГУКИ', href: '#testimonials' },
     { name: 'НОВИНИ', href: '#news' },
+    { name: 'ВАКАНСІЇ', href: '/vacancies' },
     { name: 'КОНТАКТИ', href: '#contact' },
   ]
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-      setIsOpen(false)
+    
+    if (href.startsWith('#')) {
+      if (isMainPage) {
+        // If we're on the main page, scroll to the section
+        const element = document.querySelector(href)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+          setIsOpen(false)
+        }
+      } else {
+        // If we're not on the main page, redirect to main page with hash
+        window.location.href = `/${href}`
+      }
+    } else {
+      // For non-hash links (like /vacancies), navigate normally
+      window.location.href = href
     }
   }
 
