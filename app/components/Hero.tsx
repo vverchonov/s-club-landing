@@ -14,7 +14,7 @@ const Hero = () => {
         Cherry Lips
         </h1>
         <p className="text-lg md:text-xl text-white/90 mb-8 font-light leading-relaxed">
-          Ексклюзивний Нічний клуб, Стриптиз клуб та Кабаре в Цюриху для<br className="hidden md:block" />
+          Ексклюзивний Нічний клуб, Стриптиз клуб та Кабаре в Ужгороді для<br className="hidden md:block" />
           незабутніх вечорів з нашими дівчатами
         </p>
         <Link 
