@@ -47,8 +47,8 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <a href="#home" onClick={(e) => handleClick(e, '#home')} className="flex items-center space-x-2">
-              <Image src="/logo.png" alt="S Club Логотип" width={56} height={56} className="h-14 w-auto" />
-              <span className="text-2xl font-bold">S CLUB</span>
+              <Image src="/logo.png" alt="Cherry Lips Логотип" width={56} height={56} className="h-14 w-auto" />
+              <span className="text-2xl font-bold">Cherry Lips</span>
             </a>
           </div>
           

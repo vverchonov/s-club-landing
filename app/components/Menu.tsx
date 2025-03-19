@@ -29,7 +29,7 @@ const Menu = () => {
 
   const crazyMenu = [
     {
-      name: "🔥 S Club Special",
+      name: "🔥 Cherry Lips Special",
       description: "Фірмовий коктейль з секретним інгредієнтом",
       price: "350₴",
       highlight: true

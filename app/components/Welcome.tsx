@@ -12,14 +12,14 @@ const Welcome = () => {
         <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-32">
           {/* Text Content */}
           <div>
-            <h2 className="text-red-500 text-xl mb-4">ЛАСКАВО ПРОСИМО ДО S CLUB</h2>
-            <h3 className="text-4xl md:text-5xl font-serif mb-8">
-              НІЧНИЙ КЛУБ & СТРИПТИЗ КЛУБ В САМОМУ СЕРЦІ КИЄВА
+            <h2 className="text-red-500 text-xl mb-4 uppercase">ЛАСКАВО ПРОСИМО ДО Cherry Lips showbar</h2>
+            <h3 className="text-4xl md:text-5xl font-serif mb-8 uppercase">
+              НІЧНИЙ КЛУБ & СТРИПТИЗ КЛУБ В САМОМУ СЕРЦІ Ужгорода
             </h3>
             <div className="space-y-6 text-gray-300">
               <p>
                 Відчуйте незабутні вечори, сповнені елегантності, чуттєвості та розваг найвищого класу. 
-                <span className="text-white"> S Club</span>, один з перших кабаре в Києві, запрошує вас у світ
+                <span className="text-white"> Cherry Lips showbar</span> - перший кабаре в Ужгороді, запрошує вас у світ
                 <Link href="/shows" className="text-white hover:text-red-500 transition-colors"> розкішних шоу</Link>,
                 <Link href="/girls" className="text-white hover:text-red-500 transition-colors"> чарівних дівчат</Link> та вишуканих напоїв.
               </p>
@@ -31,7 +31,7 @@ const Welcome = () => {
                 до коктейлів та міцних напоїв. З нами ви відчуєте ідеальний симбіоз розкоші та розваг.
               </p>
               <p>
-                Ласкаво просимо до <span className="text-white">S Club</span>, де ночі стають незабутніми!
+                Ласкаво просимо до <span className="text-white">Cherry Lips showbar</span>, де ночі стають незабутніми!
               </p>
             </div>
             <Link 
@@ -46,7 +46,7 @@ const Welcome = () => {
           <div className="relative aspect-[3/4] bg-gradient-to-br from-red-900/50 to-black/50 rounded-lg overflow-hidden">
             <Image
               src="/club-interior.jpg"
-              alt="S Club Interior"
+              alt="Cherry Lips showbar Interior"
               fill
               className="object-cover mix-blend-overlay"
               priority
@@ -63,7 +63,7 @@ const Welcome = () => {
           <div className="relative aspect-[3/4] bg-gradient-to-br from-red-900/50 to-black/50 rounded-lg overflow-hidden">
             <Image
               src="/club-show.jpg"
-              alt="S Club Show"
+              alt="Cherry Lips Show"
               fill
               className="object-cover"
               priority
@@ -86,7 +86,7 @@ const Welcome = () => {
                 <Link href="/lap-dance" className="text-white hover:text-red-500 transition-colors"> приватними танцями</Link> від наших міжнародних артисток.
               </p>
               <p>
-                Незабутні враження чекають на вас у <span className="text-white">S Club</span>, які ви будете пам&apos;ятати довгий час.
+                Незабутні враження чекають на вас у <span className="text-white">Cherry Lips showbar</span>, які ви будете пам&apos;ятати довгий час.
                 Відвідайте нас сьогодні та дозвольте собі спокуситися нашою унікальною атмосферою!
               </p>
             </div>

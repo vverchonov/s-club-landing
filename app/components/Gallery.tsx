@@ -8,7 +8,7 @@ const Gallery = () => {
       <div className="max-w-6xl mx-auto px-4">
         {/* Heading */}
         <div className="mb-12">
-          <h2 className="text-red-500 text-xl mb-4">АТМОСФЕРА S CLUB</h2>
+          <h2 className="text-red-500 text-xl mb-4 uppercase">АТМОСФЕРА Cherry Lips showbar</h2>
           <h3 className="text-4xl md:text-5xl font-serif mb-8">
             ЕКСКЛЮЗИВНА АТМОСФЕРА ДЛЯ<br />
             ЕЛЕГАНТНОСТІ & ЕРОТИКИ

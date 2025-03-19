@@ -40,7 +40,7 @@ const Vacancies = () => {
       <div className="max-w-6xl mx-auto px-4">
         <FadeIn>
           <div className="text-center mb-16">
-            <h2 className="text-red-500 text-xl mb-4">КАР&apos;ЄРА В S CLUB</h2>
+            <h2 className="text-red-500 text-xl mb-4 uppercase">КАР&apos;ЄРА В Cherry Lips showbar</h2>
             <h3 className="text-4xl md:text-5xl font-serif mb-8">
               ПРИЄДНУЙТЕСЬ ДО НАШОЇ КОМАНДИ
             </h3>
@@ -96,7 +96,7 @@ const Vacancies = () => {
 
           <div className="text-center">
             <Link 
-              href="mailto:career@sclub.kiev.ua"
+              href="mailto:cherrylips.club1@gmail.com"
               className="inline-block px-8 py-3 bg-red-600 hover:bg-red-700 text-white rounded-full tracking-wider transition-colors"
             >
               НАДІСЛАТИ РЕЗЮМЕ

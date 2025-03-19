@@ -58,8 +58,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="text-xl font-medium mb-2">Адреса</h4>
-                    <p className="text-gray-300">вул. Хрещатик 22</p>
-                    <p className="text-gray-300">01001 Київ</p>
+                    <p className="text-gray-300">вулиця Верховинська, 38</p>
+                    <p className="text-gray-300">Ужгород, Закарпатська область</p>
                   </div>
                 </div>
 
@@ -72,8 +72,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="text-xl font-medium mb-2">Години роботи</h4>
-                    <p className="text-gray-300">Пн-Чт: 20:00 - 04:00</p>
-                    <p className="text-gray-300">Пт-Сб: 20:00 - 06:00</p>
+                    <p className="text-gray-300">Відкриття незабаром</p>
                   </div>
                 </div>
 
@@ -86,7 +85,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="text-xl font-medium mb-2">Телефон</h4>
-                    <p className="text-gray-300">+380 44 123 45 67</p>
+                    <p className="text-gray-300">+380990111999</p>
                   </div>
                 </div>
 
@@ -99,7 +98,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="text-xl font-medium mb-2">Email</h4>
-                    <p className="text-gray-300">info@sclub.kiev.ua</p>
+                    <p className="text-gray-300">cherrylips.club1@gmail.com</p>
                   </div>
                 </div>
               </div>

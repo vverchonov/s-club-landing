@@ -8,8 +8,8 @@ import ScrollToTop from './components/ScrollToTop'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'S Club - Нічний клуб в Києві',
-  description: 'Ексклюзивний Нічний клуб, Стриптиз клуб та Кабаре в Києві',
+  title: 'Cherry Lips showbar - Cтриптиз клуб в Ужгороді',
+  description: 'Ексклюзивний Нічний клуб, Стриптиз клуб та Кабаре в Ужгороді',
 }
 
 export default function RootLayout({

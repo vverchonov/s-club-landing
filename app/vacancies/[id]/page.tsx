@@ -204,7 +204,7 @@ export default function VacancyPage() {
 
             <div className="text-center">
               <Link 
-                href="mailto:career@sclub.kiev.ua"
+                href="mailto:cherrylips.club1@gmail.com"
                 className="inline-block px-8 py-3 bg-red-600 hover:bg-red-700 text-white rounded-full tracking-wider transition-colors"
               >
                 НАДІСЛАТИ РЕЗЮМЕ

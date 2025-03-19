@@ -1,4 +1,4 @@
-# S Club - Нічний Клуб Website
+# Cherry Lips showbar - Нічний Клуб Website
 
 Сучасний, елегантний веб-сайт для нічного клубу, створений з використанням Next.js, React, і Tailwind CSS.
 

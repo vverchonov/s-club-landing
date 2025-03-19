@@ -8,16 +8,16 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
         {/* Contact Info */}
         <div>
-          <h3 className="text-red-500 text-xl mb-6">S Club Київ</h3>
-          <p className="mb-2">вул. Хрещатик 22, 01001 Київ</p>
+          <h3 className="text-red-500 text-xl mb-6">Cherry Lips showbar Ужгород</h3>
+          <p className="mb-2">вулиця Верховинська, 38, Ужгород, Закарпатська область</p>
           <p className="mb-4">
-            <a href="tel:+380441234567" className="hover:text-red-500 transition-colors">
-              +380 44 123 45 67
+            <a href="tel:+380990111999" className="hover:text-red-500 transition-colors">
+              +380990111999
             </a>
           </p>
           <p className="mb-6">
-            <a href="mailto:info@sclub.kiev.ua" className="hover:text-red-500 transition-colors">
-              info@sclub.kiev.ua
+            <a href="mailto:cherrylips.club1@gmail.com" className="hover:text-red-500 transition-colors">
+              cherrylips.club1@gmail.com
             </a>
           </p>
           <Link 
@@ -34,16 +34,7 @@ const Footer = () => {
           <h3 className="text-red-500 text-xl mb-6">Години Роботи</h3>
           <div className="space-y-2">
             <div className="flex justify-between">
-              <span>Пн-Чт</span>
-              <span>20:00 - 04:00</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Пт-Сб</span>
-              <span>20:00 - 06:00</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Нд</span>
-              <span>зачинено</span>
+              <span>Відкриття незабаром</span>
             </div>
           </div>
         </div>
@@ -126,7 +117,7 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto px-4 mt-16 pt-8 border-t border-gray-800">
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
           <div className="mb-4 md:mb-0">
-            © 2024 S Club Київ
+            © 2024 Cherry Lips showbar Ужгород
           </div>
           <div className="flex space-x-4">
             <Link href="/imprint" className="hover:text-white transition-colors">
