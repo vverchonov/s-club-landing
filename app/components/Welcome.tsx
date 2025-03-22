@@ -12,34 +12,17 @@ const Welcome = () => {
         <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-32">
           {/* Text Content */}
           <div>
-            <h2 className="text-red-500 text-xl mb-4 uppercase">ЛАСКАВО ПРОСИМО ДО Cherry Lips showbar</h2>
+            <h2 className="text-red-500 text-xl mb-4 uppercase">Cherry Lips showbar</h2>
             <h3 className="text-4xl md:text-5xl font-serif mb-8 uppercase">
               НІЧНИЙ КЛУБ & СТРИПТИЗ КЛУБ В САМОМУ СЕРЦІ Ужгорода
             </h3>
             <div className="space-y-6 text-gray-300">
               <p>
-                Відчуйте незабутні вечори, сповнені елегантності, чуттєвості та розваг найвищого класу. 
-                <span className="text-white"> Cherry Lips showbar</span> - перший кабаре в Ужгороді, запрошує вас у світ
-                <Link href="/shows" className="text-white hover:text-red-500 transition-colors"> розкішних шоу</Link>,
-                <Link href="/girls" className="text-white hover:text-red-500 transition-colors"> чарівних дівчат</Link> та вишуканих напоїв.
+              Cherry Lips — це більше, ніж клуб. Це вишуканий інтер&apos;єр, приватні зони для відпочинку, ексклюзивний бар та найкраще шоу в місті.
               </p>
-              <p>
-                Насолоджуйтесь захоплюючими
-                <Link href="/shows" className="text-white hover:text-red-500 transition-colors"> стриптиз шоу</Link>, спокусливими приватними танцями та екзотичними танцівницями
-                з усього світу. Наш вибір
-                <Link href="/drinks" className="text-white hover:text-red-500 transition-colors"> напоїв</Link> не залишить байдужим - від шампанського
-                до коктейлів та міцних напоїв. З нами ви відчуєте ідеальний симбіоз розкоші та розваг.
-              </p>
-              <p>
-                Ласкаво просимо до <span className="text-white">Cherry Lips showbar</span>, де ночі стають незабутніми!
-              </p>
+              
             </div>
-            <Link 
-              href="/club" 
-              className="inline-block px-8 py-3 mt-8 border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black transition-colors rounded-full tracking-wider"
-            >
-              ВІДКРИТИ КЛУБ
-            </Link>
+          
           </div>
 
           {/* Image */}
@@ -73,26 +56,21 @@ const Welcome = () => {
 
           {/* Text Content */}
           <div>
-            <h2 className="text-red-500 text-xl mb-4">ЕКСКЛЮЗИВНІ ШОУ & КАБАРЕ</h2>
+            <h2 className="text-red-500 text-xl mb-4 uppercase">Чому обирають нас?</h2>
             <h3 className="text-4xl md:text-5xl font-serif mb-8">
-              НЕЗАБУТНІ СТРИПТИЗ ШОУ & КАБАРЕ
+              НЕЗАБУТНІ СТРИПТИЗ ШОУ & АТМОСФЕРА
             </h3>
             <div className="space-y-6 text-gray-300">
-              <p>
-                Ми пропонуємо нашим гостям незабутній досвід з нашими
-                <Link href="/girls" className="text-white hover:text-red-500 transition-colors"> прекрасними дівчатами</Link> та
-                першокласними напоями в вишуканій атмосфері. Занурьтесь в інший світ та насолоджуйтесь гарячими
-                <Link href="/shows" className="text-white hover:text-red-500 transition-colors"> стриптиз шоу</Link> та спокусливими
-                <Link href="/lap-dance" className="text-white hover:text-red-500 transition-colors"> приватними танцями</Link> від наших міжнародних артисток.
-              </p>
-              <p>
-                Незабутні враження чекають на вас у <span className="text-white">Cherry Lips showbar</span>, які ви будете пам&apos;ятати довгий час.
-                Відвідайте нас сьогодні та дозвольте собі спокуситися нашою унікальною атмосферою!
-              </p>
+              <ul className="list-disc list-inside space-y-4">
+                <li>Захопливі шоу – кожна ніч неповторна.</li>
+                <li>Найкрасивіші дівчата – витонченість, харизма та справжня пристрасть.</li>
+                <li>Шикарний інтер&apos;єр – затишок і розкіш у кожній деталі.</li>
+                <li>Картка лояльності – спеціальні привілеї для наших гостей.</li>
+              </ul>
             </div>
             <Link 
-              href="/services" 
-              className="inline-block px-8 py-3 mt-8 border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black transition-colors rounded-full tracking-wider"
+              href="#menu" 
+              className="inline-block px-8 py-3 mt-8 border-2 border-amber-300 text-amber-300 hover:bg-amber-300 hover:text-black transition-colors rounded-full tracking-wider shadow-lg hover:shadow-amber-500/50"
             >
               ДІЗНАТИСЬ ПРО ПОСЛУГИ
             </Link>

@@ -45,8 +45,7 @@ const Vacancies = () => {
               ПРИЄДНУЙТЕСЬ ДО НАШОЇ КОМАНДИ
             </h3>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              Ми пропонуємо конкурентну заробітну плату, професійний розвиток та дружній колектив.
-              Станьте частиною найкращого нічного клубу Києва!
+            Хочеш стати частиною найяскравішого клубу міста? Cherry Lips запрошує до команди енергійних і професійних співробітників!
             </p>
           </div>
 
@@ -64,7 +63,7 @@ const Vacancies = () => {
                     <h4 className="text-2xl font-medium group-hover:text-red-400 transition-colors">
                       {position.title}
                     </h4>
-                    <span className="text-yellow-500 font-bold">
+                    <span className="text-amber-300 font-bold">
                       {position.salary}
                     </span>
                   </div>
@@ -96,8 +95,9 @@ const Vacancies = () => {
 
           <div className="text-center">
             <Link 
-              href="mailto:cherrylips.club1@gmail.com"
-              className="inline-block px-8 py-3 bg-red-600 hover:bg-red-700 text-white rounded-full tracking-wider transition-colors"
+              target="_blank"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSciO3sIQLu4ZIhCA8bT5wQgJkvArH066JfmL2LoqI1WSvD9Bw/viewform"
+              className="inline-block px-8 py-3 border-2 border-amber-300 text-amber-300 hover:bg-amber-300 hover:text-black transition-colors rounded-full tracking-wider shadow-lg hover:shadow-amber-500/50"
             >
               НАДІСЛАТИ РЕЗЮМЕ
             </Link>

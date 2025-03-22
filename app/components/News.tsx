@@ -60,7 +60,7 @@ const News = () => {
               ПОДІЇ ТА ОНОВЛЕННЯ
             </h3>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              Будьте в курсі наших останніх подій, спеціальних пропозицій та оновлень
+            Будь у курсі всіх подій Cherry Lips. Нові шоу-програми, спеціальні вечори та ексклюзивні пропозиції — дізнавайся першим!
             </p>
           </div>
 
@@ -105,14 +105,6 @@ const News = () => {
             ))}
           </div>
 
-          <div className="text-center">
-            <Link 
-              href="/news"
-              className="inline-block px-8 py-3 border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-black transition-colors rounded-full tracking-wider"
-            >
-              УСІ НОВИНИ
-            </Link>
-          </div>
         </FadeIn>
       </div>
     </section>

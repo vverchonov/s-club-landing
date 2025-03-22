@@ -74,7 +74,7 @@ const Menu = () => {
                       <h5 className="text-xl mb-2">{item.name}</h5>
                       <p className="text-gray-400 text-sm">{item.description}</p>
                     </div>
-                    <span className="text-yellow-500 font-medium">{item.price}</span>
+                    <span className="text-amber-300 font-medium">{item.price}</span>
                   </div>
                 ))}
               </div>
@@ -97,7 +97,7 @@ const Menu = () => {
                         <h5 className="text-2xl mb-2 text-red-300 group-hover:text-red-200 transition-colors">{item.name}</h5>
                         <p className="text-red-200/80 text-sm">{item.description}</p>
                       </div>
-                      <span className="text-yellow-400 font-bold text-xl group-hover:scale-110 transition-transform">{item.price}</span>
+                      <span className=" text-amber-300 font-bold text-xl group-hover:scale-110 transition-transform">{item.price}</span>
                     </div>
                   ))}
                 </div>
@@ -107,8 +107,9 @@ const Menu = () => {
 
           <div className="text-center">
             <Link 
-              href="/menu"
-              className="inline-block px-8 py-3 border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black transition-colors rounded-full tracking-wider"
+              target='_blank'
+              href=""
+              className="inline-block px-8 py-3 border-2 border-amber-300 text-amber-300 hover:bg-amber-300 hover:text-black transition-colors rounded-full tracking-wider shadow-lg hover:shadow-amber-500/50"
             >
               ПОВНЕ МЕНЮ
             </Link>

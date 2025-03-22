@@ -153,7 +153,7 @@ export default function VacancyPage() {
             <div className="bg-gradient-to-b from-red-950/30 to-black/30 rounded-lg p-8 mb-8">
               <div className="flex justify-between items-start mb-6">
                 <h1 className="text-3xl md:text-4xl font-serif">{vacancy.title}</h1>
-                <span className="text-yellow-500 font-bold text-xl">{vacancy.salary}</span>
+                <span className="text-amber-300 font-bold text-xl">{vacancy.salary}</span>
               </div>
               <p className="text-gray-300 text-lg mb-8">{vacancy.description}</p>
 
@@ -204,8 +204,9 @@ export default function VacancyPage() {
 
             <div className="text-center">
               <Link 
-                href="mailto:cherrylips.club1@gmail.com"
-                className="inline-block px-8 py-3 bg-red-600 hover:bg-red-700 text-white rounded-full tracking-wider transition-colors"
+                target="_blank"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSciO3sIQLu4ZIhCA8bT5wQgJkvArH066JfmL2LoqI1WSvD9Bw/viewform"
+                className="inline-block px-8 py-3 border-2 border-amber-300 text-amber-300 hover:bg-amber-300 hover:text-black transition-colors rounded-full tracking-wider shadow-lg hover:shadow-amber-500/50"
               >
                 НАДІСЛАТИ РЕЗЮМЕ
               </Link>

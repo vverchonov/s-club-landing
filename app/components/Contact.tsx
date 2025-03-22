@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import FadeIn from './FadeIn'
+import Link from 'next/link'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -29,12 +30,7 @@ const Contact = () => {
             </h3>
             <div className="max-w-3xl mx-auto">
               <p className="text-lg text-gray-300 mb-4">
-                Ми з радістю організуємо для вас незабутній вечір у форматі закритої вечірки, корпоративу або іншого приватного заходу. 
-                Наш простір ідеально підходить для проведення особливих подій у вишуканій атмосфері.
-              </p>
-              <p className="text-lg text-gray-300">
-                Зв&apos;яжіться з нами за телефоном, або заповніть форму зворотного зв&apos;язку, і ми обговоримо всі деталі вашого майбутнього заходу.
-                Наша команда допоможе створити ідеальний сценарій вечора саме для вас.
+              Завітай до Cherry Lips і поринь у світ розкоші та задоволення.
               </p>
             </div>
           </div>
@@ -58,8 +54,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="text-xl font-medium mb-2">Адреса</h4>
-                    <p className="text-gray-300">вулиця Верховинська, 38</p>
-                    <p className="text-gray-300">Ужгород, Закарпатська область</p>
+                    <Link target='_blank' href="https://www.google.com/maps/place/Verkhovyns'ka+St,+38,+Uzhhorod,+Zakarpats'ka+oblast,+Ukraine,+88000/@48.6454378,22.2722753,17z/data=!3m1!4b1!4m6!3m5!1s0x473918180c665683:0x7cb1ba0c90e95822!8m2!3d48.6454378!4d22.2748502!16s%2Fg%2F1vm_wnkz?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" className="text-gray-300">вулиця Верховинська, 38 </Link>
+                    <Link target='_blank' href="https://www.google.com/maps/place/Verkhovyns'ka+St,+38,+Uzhhorod,+Zakarpats'ka+oblast,+Ukraine,+88000/@48.6454378,22.2748502,17z/data=!3m1!4b1!4m6!3m5!1s0x473918180c665683:0x7cb1ba0c90e95822!8m2!3d48.6454378!4d22.2748502!16s%2Fg%2F1vm_wnkz?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" className="text-gray-300">Ужгород, Закарпатська область</Link>
                   </div>
                 </div>
 
@@ -85,7 +81,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="text-xl font-medium mb-2">Телефон</h4>
-                    <p className="text-gray-300">+380990111999</p>
+                    <Link target='_blank' href="tel:+38 (099) 011 1999" className="text-gray-300">+38 (099) 011 1999</Link>
                   </div>
                 </div>
 
@@ -98,7 +94,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="text-xl font-medium mb-2">Email</h4>
-                    <p className="text-gray-300">cherrylips.club1@gmail.com</p>
+                    <Link target='_blank' href="mailto:cherrylips.club1@gmail.com" className="text-gray-300">cherrylips.club1@gmail.com</Link>
                   </div>
                 </div>
               </div>

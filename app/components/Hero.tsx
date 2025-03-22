@@ -14,12 +14,11 @@ const Hero = () => {
         Cherry Lips
         </h1>
         <p className="text-lg md:text-xl text-white/90 mb-8 font-light leading-relaxed">
-          Ексклюзивний Нічний клуб, Стриптиз клуб та Кабаре в Ужгороді для<br className="hidden md:block" />
-          незабутніх вечорів з нашими дівчатами
+          Ласкаво просимо до Cherry Lips — місця, де стиль, пристрасть і розкішне дозвілля поєднуються в єдиному ритмі. У нас на тебе чекають найкрасивіші дівчата, захопливі шоу-програми та атмосфера, яка допоможе забути про буденні турботи.
         </p>
         <Link 
-          href="/club" 
-          className="inline-block px-8 py-3 text-lg font-medium text-white border-2 border-yellow-500 hover:bg-yellow-500 transition-colors duration-300 rounded-full tracking-wider"
+          href="#club" 
+          className="inline-block px-8 py-3 text-lg font-medium text-amber-300 border-2 border-amber-300 hover:bg-amber-300 hover:text-black transition-colors duration-300 rounded-full tracking-wider shadow-lg hover:shadow-amber-500/50"
         >
           ДІЗНАТИСЬ БІЛЬШЕ
         </Link>
@@ -35,8 +34,8 @@ const Hero = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
               <h3 className="text-red-500 font-medium mb-1 text-xs md:text-sm">АДРЕСА</h3>
-              <p className="text-xs md:text-sm">вулиця Верховинська, 38</p>
-              <p className="text-xs md:text-sm">Ужгород, Закарпатська область</p>
+              <Link target='_blank' href="https://www.google.com/maps/place/Verkhovyns'ka+St,+38,+Uzhhorod,+Zakarpats'ka+oblast,+Ukraine,+88000/@48.6483487,22.2682014,13.67z/data=!4m6!3m5!1s0x473918180c665683:0x7cb1ba0c90e95822!8m2!3d48.6454378!4d22.2748502!16s%2Fg%2F1vm_wnkz?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" className="text-xs md:text-sm">вулиця Верховинська, 38</Link>
+              <Link target='_blank' href="https://www.google.com/maps/place/Verkhovyns'ka+St,+38,+Uzhhorod,+Zakarpats'ka+oblast,+Ukraine,+88000/@48.6483487,22.2682014,13.67z/data=!4m6!3m5!1s0x473918180c665683:0x7cb1ba0c90e95822!8m2!3d48.6454378!4d22.2748502!16s%2Fg%2F1vm_wnkz?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" className="text-xs md:text-sm">Ужгород, Закарпатська область</Link>
             </div>
             
             <div className="flex flex-col items-center p-2">
@@ -52,7 +51,7 @@ const Hero = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
               <h3 className="text-red-500 font-medium mb-1 text-xs md:text-sm">ТЕЛЕФОН</h3>
-              <p className="text-xs md:text-sm">+380990111999</p>
+              <Link target='_blank' href="tel:+38 (099) 011 1999" className="text-xs md:text-sm">+38 (099) 011 1999</Link>
             </div>
             
             <div className="flex flex-col items-center p-2">
@@ -60,7 +59,7 @@ const Hero = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
               <h3 className="text-red-500 font-medium mb-1 text-xs md:text-sm">ПОШТА</h3>
-              <p className="text-xs md:text-sm">cherrylips.club1@gmail.com</p>
+              <Link target='_blank' href={"mailto:cherrylips.club1@gmail.com"} className="text-xs md:text-sm">cherrylips.club1@gmail.com</Link>
             </div>
           </div>
         </div>
