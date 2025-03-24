@@ -3,7 +3,7 @@ import Welcome from './components/Welcome'
 import Menu from './components/Menu'
 import Gallery from './components/Gallery'
 import Testimonials from './components/Testimonials'
-import News from './components/News'
+
 import Contact from './components/Contact'
 import FadeIn from './components/FadeIn'
 

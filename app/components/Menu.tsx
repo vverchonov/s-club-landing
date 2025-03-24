@@ -7,49 +7,6 @@ import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu'
 import LocalBarIcon from '@mui/icons-material/LocalBar'
 
 const Menu = () => {
-  const regularMenu = [
-    {
-      name: "Джек Деніелс",
-      description: "Преміальний американський віскі",
-      price: "150₴"
-    },
-    {
-      name: "Мохіто",
-      description: "Освіжаючий коктейль з м'ятою та лаймом",
-      price: "180₴"
-    },
-    {
-      name: "Маргарита",
-      description: "Класичний коктейль з текілою",
-      price: "190₴"
-    },
-    {
-      name: "Мартіні Рояль",
-      description: "Ігристе вино з мартіні",
-      price: "210₴"
-    }
-  ]
-
-  const crazyMenu = [
-    {
-      name: "🔥 Cherry Lips Special",
-      description: "Фірмовий коктейль з секретним інгредієнтом",
-      price: "350₴",
-      highlight: true
-    },
-    {
-      name: "💫 Зоряна Ніч",
-      description: "Коктейль з шампанським та золотими блискітками",
-      price: "420₴",
-      highlight: true
-    },
-    {
-      name: "🌋 Вогняний Вулкан",
-      description: "Гарячий шот з піротехнічним шоу",
-      price: "280₴",
-      highlight: true
-    }
-  ]
 
   return (
     <section id="menu" className="relative bg-black text-white py-24">

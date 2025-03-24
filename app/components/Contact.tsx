@@ -40,7 +40,7 @@ const Contact = () => {
 
       <FadeIn>
         <div className="relative max-w-6xl mx-auto px-4">
-          <h2 className="text-red-500 text-xl mb-4 text-center uppercase">Зв'яжіться з нами</h2>
+          <h2 className="text-red-500 text-xl mb-4 text-center uppercase">Звя&apos;жіться з нами</h2>
           <h3 className="text-4xl md:text-5xl font-serif mb-16 text-center">
             ЗАБРОНЮВАТИ СТОЛИК
           </h3>
@@ -51,7 +51,7 @@ const Contact = () => {
               <div>
                 <h4 className="text-2xl font-serif mb-4">Контактна Інформація</h4>
                 <p className="text-gray-400 mb-8">
-                  Зв'яжіться з нами для бронювання столика або якщо у вас є запитання. Наш менеджер передзвонить вам найближчим часом для підтвердження бронювання.
+                  Зв&aposяжіться з нами для бронювання столика або якщо у вас є запитання. Наш менеджер передзвонить вам найближчим часом для підтвердження бронювання.
                 </p>
               </div>
 
@@ -104,7 +104,7 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Ім'я
+                    Ім&aposя
                   </label>
                   <input
                     type="text"
