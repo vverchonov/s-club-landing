@@ -1,37 +1,69 @@
 'use client'
 
 import { useState } from 'react'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import FadeIn from './FadeIn'
 
-const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    message: ''
-  })
+export default function Contact() {
+  const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // Handle form submission
-    console.log('Form submitted:', formData)
-    // Reset form
-    setFormData({
-      name: '',
-      phone: '',
-      message: ''
-    })
-  }
+    setIsLoading(true)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
+    try {
+      const formData = new FormData(e.currentTarget)
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        body: formData,
+      })
+      
+      const data = await response.json()
+      
+      if (response.ok) {
+        toast.success('Повідомлення успішно надіслано', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        (e.target as HTMLFormElement).reset()
+      } else {
+        toast.error(data.error || 'Помилка при відправці повідомлення', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        })
+      }
+    } catch  {
+      toast.error('Помилка при відправці повідомлення', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      })
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
     <section id="contact" className="relative bg-black text-white py-24 overflow-hidden">
+      <ToastContainer />
       {/* Red glow effects */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-red-600/20 rounded-full blur-[80px]" />
@@ -104,15 +136,13 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Ім&aposя
+                    Ім&apos;я
                   </label>
                   <input
                     type="text"
                     id="name"
                     name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-red-500 transition-colors"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-colors text-white"
                     placeholder="Ваше ім'я"
                   />
                 </div>
@@ -125,10 +155,9 @@ const Contact = () => {
                     type="tel"
                     id="phone"
                     name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-red-500 transition-colors"
+                    pattern="^\+?3?8?(0\d{9})$"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-colors text-white"
                     placeholder="+380"
                   />
                 </div>
@@ -140,20 +169,21 @@ const Contact = () => {
                   <textarea
                     id="message"
                     name="message"
-                    value={formData.message}
-                    onChange={handleChange}
                     rows={4}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-red-500 transition-colors"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-colors text-white resize-none"
                     placeholder="Ваше повідомлення"
                   />
                 </div>
 
-                <div className="flex justify-center">
+                <div className="text-center">
                   <button
                     type="submit"
-                    className="w-full sm:w-2/3 px-8 py-3 text-lg font-medium bg-[#8B0000] hover:bg-[#660000] text-white transition-colors duration-300 rounded-full tracking-wider shadow-lg"
+                    disabled={isLoading}
+                    className={`px-8 py-3 bg-[#8B0000] hover:bg-[#660000] text-white rounded-full text-lg font-medium tracking-wider shadow-lg transition-colors duration-300 ${
+                      isLoading ? 'opacity-75 cursor-not-allowed' : ''
+                    }`}
                   >
-                    НАДІСЛАТИ
+                    {isLoading ? 'Надсилання...' : 'НАДІСЛАТИ'}
                   </button>
                 </div>
               </form>
@@ -222,6 +252,4 @@ const Contact = () => {
       </FadeIn>
     </section>
   )
-}
-
-export default Contact 
+} 
