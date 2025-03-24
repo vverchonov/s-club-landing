@@ -4,17 +4,17 @@ import nodemailer from "nodemailer";
 export async function POST(request: Request) {
   // Debug environment variables (safely)
   console.log('Environment Variables Status:', {
-    EMAIL_TO: !!process.env.EMAIL_TO,
-    EMAIL_FROM: !!process.env.EMAIL_FROM,
-    EMAIL_PASSWORD: !!process.env.EMAIL_PASSWORD,
+    EMAIL_TO: !!process.env.REACT_APP_EMAIL_TO,
+    EMAIL_FROM: !!process.env.REACT_APP_EMAIL_FROM,
+    EMAIL_PASSWORD: !!process.env.REACT_APP_EMAIL_PASSWORD,
   });
 
   // Check if environment variables are set
-  if (!process.env.EMAIL_TO || !process.env.EMAIL_FROM || !process.env.EMAIL_PASSWORD) {
+  if (!process.env.REACT_APP_EMAIL_TO || !process.env.REACT_APP_EMAIL_FROM || !process.env.REACT_APP_EMAIL_PASSWORD) {
     console.error('Missing environment variables:', {
-      EMAIL_TO: !!process.env.EMAIL_TO,
-      EMAIL_FROM: !!process.env.EMAIL_FROM,
-      EMAIL_PASSWORD: !!process.env.EMAIL_PASSWORD,
+      EMAIL_TO: !!process.env.REACT_APP_EMAIL_TO,
+      EMAIL_FROM: !!process.env.REACT_APP_EMAIL_FROM,
+      EMAIL_PASSWORD: !!process.env.REACT_APP_EMAIL_PASSWORD,
     });
     return NextResponse.json(
       { error: "Server configuration error" },
@@ -22,9 +22,9 @@ export async function POST(request: Request) {
     );
   }
 
-  const usernameTo = process.env.EMAIL_TO;
-  const username = process.env.EMAIL_FROM;
-  const password = process.env.EMAIL_PASSWORD;
+  const usernameTo = process.env.REACT_APP_EMAIL_TO;
+  const username = process.env.REACT_APP_EMAIL_FROM;
+  const password = process.env.REACT_APP_EMAIL_PASSWORD;
 
   try {
     const formData = await request.formData();
