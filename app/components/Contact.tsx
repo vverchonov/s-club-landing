@@ -156,7 +156,6 @@ export default function Contact() {
                     id="phone"
                     name="phone"
                     required
-                    pattern="^\+?3?8?(0\d{9})$"
                     className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-colors text-white"
                     placeholder="+380"
                   />
