@@ -20,13 +20,15 @@ const Footer = () => {
               cherrylips.club1@gmail.com
             </a>
           </p>
-          <Link 
-            href="https://www.google.com/maps/place/Verkhovyns'ka+St,+38,+Uzhhorod,+Zakarpats'ka+oblast,+Ukraine,+88000/@48.6454378,22.2722753,17z/data=!3m1!4b1!4m6!3m5!1s0x473918180c665683:0x7cb1ba0c90e95822!8m2!3d48.6454378!4d22.2748502!16s%2Fg%2F1vm_wnkz?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" 
-            target="_blank"
-            className="inline-block px-6 py-2 border-2 border-amber-300 text-amber-300 hover:bg-amber-300 hover:text-black transition-colors rounded-full text-sm shadow-lg hover:shadow-amber-500/50"
-          >
-            ПРОКЛАСТИ МАРШРУТ
-          </Link>
+          <div className="flex justify-center">
+            <Link 
+              href="https://www.google.com/maps/place/Verkhovyns'ka+St,+38,+Uzhhorod,+Zakarpats'ka+oblast,+Ukraine,+88000/@48.6454378,22.2722753,17z/data=!3m1!4b1!4m6!3m5!1s0x473918180c665683:0x7cb1ba0c90e95822!8m2!3d48.6454378!4d22.2748502!16s%2Fg%2F1vm_wnkz?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" 
+              target="_blank"
+              className="inline-flex items-center justify-center h-12 px-8 text-sm font-medium bg-[#8B0000] hover:bg-[#660000] text-white transition-colors duration-300 rounded-full tracking-wider shadow-lg"
+            >
+              ПРОКЛАСТИ МАРШРУТ
+            </Link>
+          </div>
         </div>
 
         {/* Opening Hours */}
@@ -86,9 +88,9 @@ const Footer = () => {
             <li>
               <Link href="/vacancies" className="hover:text-red-500 transition-colors">Вакансії</Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="#news" className="hover:text-red-500 transition-colors">Новини</Link>
-            </li>
+            </li> */}
             <li>
               <Link href="#contact" className="hover:text-red-500 transition-colors">Контакти</Link>
             </li>

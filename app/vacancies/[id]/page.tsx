@@ -2,6 +2,7 @@
 import { notFound, useParams } from 'next/navigation'
 import Link from 'next/link'
 import FadeIn from '../../components/FadeIn'
+import Image from 'next/image'
 
 interface Vacancy {
   id: string
@@ -68,6 +69,55 @@ const vacancies: VacanciesType = {
       "Контроль наявності інгредієнтів"
     ]
   },
+  '375398': {
+    id: '375398',
+    title: "Офіціант/ка",
+    salary: "40,000₴ - 55,000₴/міс",
+    description: "Потрібні офіціанти з досвідом роботи в преміальних закладах. Забезпечуємо навчання та можливість кар'єрного росту.",
+    requirements: [
+      "Досвід роботи від 1 року",
+      "Знання сервісу",
+      "Вік від 18 років"
+    ],
+    benefits: [
+      "Висока заробітна плата + чайові",
+      "Офіційне працевлаштування",
+      "Безкоштовне харчування",
+      "Навчання та розвиток",
+      "Дружній колектив"
+    ],
+    responsibilities: [
+      "Обслуговування гостей",
+      "Знання меню та напоїв",
+      "Підтримка чистоти в залі",
+      "Робота з касою"
+    ]
+  },
+  '375399': {
+    id: '375399',
+    title: "Адміністратор",
+    salary: "50,000₴ - 70,000₴/міс",
+    description: "Шукаємо досвідченого адміністратора для управління роботою закладу та персоналом. Важливі лідерські якості та досвід у нічних клубах.",
+    requirements: [
+      "Досвід роботи від 3 років",
+      "Знання англійської мови",
+      "Організаторські здібності",
+      "Стресостійкість"
+    ],
+    benefits: [
+      "Висока заробітна плата",
+      "Офіційне працевлаштування",
+      "Перспективи кар'єрного росту",
+      "Дружній колектив",
+      "Корпоративні бонуси"
+    ],
+    responsibilities: [
+      "Управління персоналом",
+      "Контроль якості обслуговування",
+      "Вирішення конфліктних ситуацій",
+      "Ведення документації"
+    ]
+  },
   '375397': {
     id: '375397',
     title: "Хостес",
@@ -92,28 +142,78 @@ const vacancies: VacanciesType = {
       "Вирішення конфліктних ситуацій"
     ]
   },
-  '375398': {
-    id: '375398',
-    title: "Офіціант/ка",
-    salary: "40,000₴ - 55,000₴/міс",
-    description: "Потрібні офіціанти з досвідом роботи в преміальних закладах. Забезпечуємо навчання та можливість кар'єрного росту.",
+  '375400': {
+    id: '375400',
+    title: "Діджей",
+    salary: "60,000₴ - 90,000₴/міс",
+    description: "Шукаємо талановитого діджея з досвідом роботи в нічних клубах. Важливе вміння відчувати аудиторію та створювати атмосферу.",
     requirements: [
-      "Досвід роботи від 1 року",
-      "Знання сервісу",
-      "Вік від 18 років"
+      "Досвід роботи від 2 років",
+      "Власне обладнання",
+      "Знання сучасної музики",
+      "Вміння працювати з публікою"
     ],
     benefits: [
-      "Висока заробітна плата + чайові",
+      "Висока заробітна плата",
+      "Гнучкий графік",
       "Офіційне працевлаштування",
-      "Безкоштовне харчування",
-      "Навчання та розвиток",
-      "Дружній колектив"
+      "Можливість розвитку",
+      "Професійне обладнання"
     ],
     responsibilities: [
-      "Обслуговування гостей",
-      "Знання меню та напоїв",
-      "Підтримка чистоти в залі",
-      "Робота з касою"
+      "Створення музичних сетів",
+      "Робота з публікою",
+      "Участь у спеціальних заходах",
+      "Підтримка технічного обладнання"
+    ]
+  },
+  '375401': {
+    id: '375401',
+    title: "Охоронець",
+    salary: "35,000₴ - 45,000₴/міс",
+    description: "Потрібні відповідальні охоронці для забезпечення безпеки гостей та персоналу клубу. Перевага кандидатам з досвідом роботи в нічних закладах.",
+    requirements: [
+      "Досвід роботи від 1 року",
+      "Фізична підготовка",
+      "Стресостійкість",
+      "Вміння працювати в команді"
+    ],
+    benefits: [
+      "Стабільна заробітна плата",
+      "Офіційне працевлаштування",
+      "Уніформа",
+      "Дружній колектив",
+      "Гнучкий графік"
+    ],
+    responsibilities: [
+      "Контроль безпеки в клубі",
+      "Перевірка відвідувачів",
+      "Запобігання конфліктним ситуаціям",
+      "Взаємодія з правоохоронними органами"
+    ]
+  },
+  '375402': {
+    id: '375402',
+    title: "Прибиральниця",
+    salary: "25,000₴ - 30,000₴/міс",
+    description: "Шукаємо відповідальних працівників для підтримки чистоти в клубі. Графік роботи позмінний.",
+    requirements: [
+      "Відповідальність",
+      "Уважність до деталей",
+      "Досвід роботи вітається"
+    ],
+    benefits: [
+      "Стабільна заробітна плата",
+      "Офіційне працевлаштування",
+      "Забезпечення інвентарем",
+      "Дружній колектив",
+      "Гнучкий графік"
+    ],
+    responsibilities: [
+      "Прибирання приміщень клубу",
+      "Підтримка чистоти протягом роботи",
+      "Контроль витратних матеріалів",
+      "Дотримання санітарних норм"
     ]
   }
 }
@@ -133,10 +233,26 @@ export default function VacancyPage() {
     notFound()
   }
 
+  const isDancer = id === '375395';
+
   return (
     <>
-      <main className="bg-black text-white min-h-screen">
-        <div className="max-w-4xl mx-auto px-4 py-12">
+      <main className="bg-black text-white min-h-screen relative">
+        {isDancer && (
+          <>
+            <div className="absolute inset-0 z-0">
+              <Image
+                src="/back.jpg"
+                alt="Background"
+                fill
+                className="object-cover opacity-60"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/90"></div>
+            </div>
+          </>
+        )}
+        <div className="max-w-4xl mx-auto px-4 py-12 relative z-10">
           <FadeIn>
             <div className="mb-8">
               <Link 
@@ -150,7 +266,7 @@ export default function VacancyPage() {
               </Link>
             </div>
 
-            <div className="bg-gradient-to-b from-red-950/30 to-black/30 rounded-lg p-8 mb-8">
+            <div className={`${isDancer ? 'bg-black/30' : 'bg-gradient-to-b from-red-950/30 to-black/30'} rounded-lg p-8 mb-8 backdrop-blur-sm`}>
               <div className="flex justify-between items-start mb-6">
                 <h1 className="text-3xl md:text-4xl font-serif">{vacancy.title}</h1>
                 <span className="text-amber-300 font-bold text-xl">{vacancy.salary}</span>
@@ -206,7 +322,7 @@ export default function VacancyPage() {
               <Link 
                 target="_blank"
                 href="https://docs.google.com/forms/d/e/1FAIpQLSciO3sIQLu4ZIhCA8bT5wQgJkvArH066JfmL2LoqI1WSvD9Bw/viewform"
-                className="inline-block px-8 py-3 border-2 border-amber-300 text-amber-300 hover:bg-amber-300 hover:text-black transition-colors rounded-full tracking-wider shadow-lg hover:shadow-amber-500/50"
+                className="inline-block px-8 py-3 text-lg font-medium bg-[#8B0000] hover:bg-[#660000] text-white transition-colors duration-300 rounded-full tracking-wider shadow-lg"
               >
                 НАДІСЛАТИ РЕЗЮМЕ
               </Link>

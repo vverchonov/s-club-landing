@@ -25,9 +25,9 @@ export default function Home() {
       <FadeIn>
         <Testimonials />
       </FadeIn>
-      <FadeIn>
+      {/* <FadeIn>
         <News />
-      </FadeIn>
+      </FadeIn> */}
       <Contact />
     </main>
   )

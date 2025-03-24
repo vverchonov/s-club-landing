@@ -1,27 +1,40 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 
 const Hero = () => {
   return (
-    <div id="home" className="relative h-[calc(100vh-7rem)] bg-gradient-to-br from-black via-red-900 to-black flex items-center justify-center text-center px-4">
-      {/* Background overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/30"></div>
+    <div id="home" className="relative h-[calc(100vh-7rem)]">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/hero.jpg"
+          alt="Cherry Lips Hero Background"
+          fill
+          className="object-cover"
+          priority
+        />
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
+      </div>
       
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto -mt-20">
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-white mb-6 tracking-wider">
-        Cherry Lips
-        </h1>
-        <p className="text-lg md:text-xl text-white/90 mb-8 font-light leading-relaxed">
-          Ласкаво просимо до Cherry Lips — місця, де стиль, пристрасть і розкішне дозвілля поєднуються в єдиному ритмі. У нас на тебе чекають найкрасивіші дівчата, захопливі шоу-програми та атмосфера, яка допоможе забути про буденні турботи.
-        </p>
-        <Link 
-          href="#club" 
-          className="inline-block px-8 py-3 text-lg font-medium text-amber-300 border-2 border-amber-300 hover:bg-amber-300 hover:text-black transition-colors duration-300 rounded-full tracking-wider shadow-lg hover:shadow-amber-500/50"
-        >
-          ДІЗНАТИСЬ БІЛЬШЕ
-        </Link>
+      <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
+        <div className="max-w-4xl mx-auto -mt-20">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-white mb-6 tracking-wider">
+            Cherry Lips
+          </h1>
+          <p className="text-lg md:text-xl text-white/90 mb-8 font-light leading-relaxed">
+            Ласкаво просимо до Cherry Lips — місця, де стиль, пристрасть і розкішне дозвілля поєднуються в єдиному ритмі. У нас на тебе чекають найкрасивіші дівчата, захопливі шоу-програми та атмосфера, яка допоможе забути про буденні турботи.
+          </p>
+          <Link 
+            href="#contact" 
+            className="inline-block px-8 py-3 text-lg font-medium bg-[#8B0000] hover:bg-[#660000] text-white transition-colors duration-300 rounded-full tracking-wider shadow-lg"
+          >
+            РЕЗЕРВУВАТИ СТОЛИК
+          </Link>
+        </div>
       </div>
 
       {/* Contact Info Footer */}

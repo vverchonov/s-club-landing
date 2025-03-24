@@ -14,7 +14,7 @@ const Navigation = () => {
     { name: 'КЛУБ', href: '#club' },
     { name: 'МЕНЮ', href: '#menu' },
     { name: 'ВІДГУКИ', href: '#testimonials' },
-    { name: 'НОВИНИ', href: '#news' },
+    // { name: 'НОВИНИ', href: '#news' },
     { name: 'ВАКАНСІЇ', href: '/vacancies' },
     { name: 'КОНТАКТИ', href: '#contact' },
   ]
@@ -47,8 +47,7 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <a href="#home" onClick={(e) => handleClick(e, '#home')} className="flex items-center space-x-2">
-              <Image src="/logo.png" alt="Cherry Lips Логотип" width={56} height={56} className="h-14 w-auto" />
-              <span className="text-2xl font-bold">Cherry Lips</span>
+              <Image src="/logo.png" alt="Cherry Lips Логотип" width={72} height={72} className="h-24 w-auto" />
             </a>
           </div>
           

@@ -43,11 +43,11 @@ const Testimonials = () => {
   return (
     <section id="testimonials" className="bg-black text-white py-24 w-full">
       <div className="max-w-[2500px] mx-auto px-4 w-full">
-        <div className="grid md:grid-cols-2 gap-8 items-center max-w-[2000px] mx-auto">
+        <div className="grid md:grid-cols-2 items-center max-w-[2000px] mx-auto">
           {/* Left side - Dark image */}
-          <div className="relative h-[400px] md:h-[500px] xl:h-[600px] rounded-lg overflow-hidden">
+          <div className="relative h-[400px] md:h-[500px] xl:h-[600px]  overflow-hidden">
             <Image
-              src="/gallery/bar-interior-dark.jpg"
+              src="/drink.jpg"
               alt="Інтер'єр бару"
               fill
               className="object-cover"
@@ -56,12 +56,7 @@ const Testimonials = () => {
             <div className="absolute inset-0 bg-black/40" />
             <div className="absolute bottom-8 left-8">
               <div className="flex items-center gap-2 mb-4">
-                <Image
-                  src="/google-logo.png"
-                  alt="Google"
-                  width={24}
-                  height={24}
-                />
+              
                 <div className="flex">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <svg
@@ -82,7 +77,7 @@ const Testimonials = () => {
           </div>
 
           {/* Right side - Testimonial */}
-          <div className="flex flex-col items-start justify-center h-full bg-red-900 p-12 rounded-lg min-h-[400px] md:min-h-[500px] xl:min-h-[600px]">
+          <div className="flex flex-col items-start justify-center h-full bg-red-900 p-12 min-h-[400px] md:min-h-[500px] xl:min-h-[600px]">
             <div 
               className={`transition-opacity duration-500 ${
                 isVisible ? 'opacity-100' : 'opacity-0'

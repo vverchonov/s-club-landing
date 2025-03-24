@@ -1,101 +1,82 @@
 'use client'
 
 import Image from 'next/image'
+import Masonry from 'react-masonry-css'
+import FadeIn from './FadeIn'
+import Link from 'next/link'
 
 const Gallery = () => {
+  const images = [
+    '/gallery/1.jpg',
+    '/gallery/2.jpg',
+    '/gallery/3.jpg',
+    '/gallery/4.jpg',
+    '/gallery/5.jpg',
+    '/gallery/6.jpg',
+    
+    '/gallery/7.jpg',
+    '/gallery/8.jpg',
+    '/gallery/11.jpg',
+    '/gallery/9.jpg',
+    '/gallery/10.jpg',
+
+    '/gallery/12.jpg',
+    // Add more images as needed
+  ]
+
+  const breakpointColumnsObj = {
+    default: 4,
+    1100: 3,
+    700: 2,
+    500: 1
+  }
+
   return (
-    <section id="gallery" className="bg-black text-white py-24">
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Heading */}
-        <div className="mb-12">
-          <h2 className="text-red-500 text-xl mb-4 uppercase">АТМОСФЕРА Cherry Lips showbar</h2>
-          <h3 className="text-4xl md:text-5xl font-serif mb-8">
+    <section id="gallery" className="relative bg-black text-white py-24 overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/95 to-black"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,0,0,0.2)_0%,transparent_70%)]"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[800px] rounded-[100%] bg-[#8B0000]/5 blur-[160px]"></div>
+      </div>
+
+      <FadeIn>
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <h2 className="text-red-500 text-xl mb-4 text-center uppercase">АТМОСФЕРА Cherry Lips showbar</h2>
+          <h3 className="text-4xl md:text-5xl font-serif mb-16 text-center">
             ЕКСКЛЮЗИВНА АТМОСФЕРА ДЛЯ<br />
             ЕЛЕГАНТНОСТІ & ЕРОТИКИ
           </h3>
-        </div>
 
-        {/* Image Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-          {/* Row 1 */}
-          <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-white/20 group">
-            <Image
-              src="/gallery/bar-1.jpg"
-              alt="Bar Area"
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-          </div>
-          <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-white/20 group">
-            <Image
-              src="/gallery/stage-1.jpg"
-              alt="Stage Area"
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-          </div>
-          <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-white/20 group">
-            <Image
-              src="/gallery/bar-2.jpg"
-              alt="Bar Interior"
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-          </div>
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="flex -ml-4 w-auto"
+            columnClassName="pl-4 bg-black"
+          >
+            {images.map((image, index) => (
+              <div key={index} className="mb-4 relative overflow-hidden group">
+                <Image
+                  src={image}
+                  alt={`Gallery image ${index + 1}`}
+                  width={800}
+                  height={1200}
+                  className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            ))}
+          </Masonry>
 
-          {/* Row 2 */}
-          <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-white/20 group">
-            <Image
-              src="/gallery/bottles.jpg"
-              alt="Premium Drinks"
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-          </div>
-          <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-white/20 group">
-            <Image
-              src="/gallery/drinks.jpg"
-              alt="Champagne Service"
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-          </div>
-          <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-white/20 group">
-            <Image
-              src="/gallery/seating.jpg"
-              alt="VIP Seating"
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-          </div>
-
-          {/* Row 3 */}
-          <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-white/20 group">
-            <Image
-              src="/gallery/lights.jpg"
-              alt="Ambient Lighting"
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-          </div>
-          <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-white/20 group">
-            <Image
-              src="/gallery/interior.jpg"
-              alt="Club Interior"
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-          </div>
-          <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-white/20 group">
-            <Image
-              src="/gallery/bar-2.jpg"
-              alt="Bar Interior"
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
-            />
+          {/* Reserve Table Button */}
+          <div className="text-center mt-12">
+            <Link 
+              href="#contact" 
+              className="inline-block px-12 py-4 text-xl font-medium bg-[#8B0000] hover:bg-[#660000] text-white transition-colors duration-300 rounded-full tracking-wider shadow-lg"
+            >
+              РЕЗЕРВУВАТИ СТОЛИК
+            </Link>
           </div>
         </div>
-      </div>
+      </FadeIn>
     </section>
   )
 }

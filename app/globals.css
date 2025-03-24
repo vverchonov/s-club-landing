@@ -29,3 +29,24 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Masonry grid styles */
+.my-masonry-grid {
+  display: flex;
+  width: auto;
+  gap: 1rem;
+}
+
+.my-masonry-grid_column {
+  background-clip: padding-box;
+}
+
+/* Optional: Style for image hover effect */
+.gallery-item {
+  transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
