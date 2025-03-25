@@ -6,6 +6,7 @@ import Testimonials from './components/Testimonials'
 
 import Contact from './components/Contact'
 import FadeIn from './components/FadeIn'
+import News from './components/News'
 
 export default function Home() {
   return (
@@ -25,9 +26,9 @@ export default function Home() {
       <FadeIn>
         <Testimonials />
       </FadeIn>
-      {/* <FadeIn>
+      <FadeIn>
         <News />
-      </FadeIn> */}
+      </FadeIn>
       <Contact />
     </main>
   )
