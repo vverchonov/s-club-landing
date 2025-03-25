@@ -83,7 +83,7 @@ export default function Contact() {
               <div>
                 <h4 className="text-2xl font-serif mb-4">Контактна Інформація</h4>
                 <p className="text-gray-400 mb-8">
-                  Зв&aposяжіться з нами для бронювання столика або якщо у вас є запитання. Наш менеджер передзвонить вам найближчим часом для підтвердження бронювання.
+                  Зв&apos;яжіться з нами для бронювання або якщо у вас є запитання. Наш менеджер передзвонить вам найближчим часом для підтвердження бронювання.
                 </p>
               </div>
 
@@ -189,64 +189,64 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Group Discounts & Private Events */}
-          <div className="mt-24 grid md:grid-cols-2 gap-8">
-            <div className="bg-white/5 p-8 rounded-lg backdrop-blur-sm shadow-xl">
-              <div className="flex items-center space-x-4 mb-6">
-                <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-                <h4 className="text-2xl font-serif">Групові Знижки</h4>
-              </div>
-              <p className="text-gray-400 mb-4">
-                Для компаній від 5 осіб ми пропонуємо спеціальні знижки на меню та напої. Зробіть ваш вечір ще приємнішим разом з друзями!
-              </p>
-              <ul className="text-gray-400 space-y-2">
-                <li className="flex items-center">
-                  <span className="text-red-500 mr-2">•</span>
-                  Знижка 10% для груп від 5 осіб
-                </li>
-                <li className="flex items-center">
-                  <span className="text-red-500 mr-2">•</span>
-                  Спеціальні комбо-меню для компаній
-                </li>
-                <li className="flex items-center">
-                  <span className="text-red-500 mr-2">•</span>
-                  Безкоштовний welcome drink
-                </li>
-              </ul>
-            </div>
+          {/* Group Discounts & Private Events
+          // <div className="mt-24 grid md:grid-cols-2 gap-8">
+          //   <div className="bg-white/5 p-8 rounded-lg backdrop-blur-sm shadow-xl">
+          //     <div className="flex items-center space-x-4 mb-6">
+          //       <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          //         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          //       </svg>
+          //       <h4 className="text-2xl font-serif">Групові Знижки</h4>
+          //     </div>
+          //     <p className="text-gray-400 mb-4">
+          //       Для компаній від 5 осіб ми пропонуємо спеціальні знижки на меню та напої. Зробіть ваш вечір ще приємнішим разом з друзями!
+          //     </p>
+          //     <ul className="text-gray-400 space-y-2">
+          //       <li className="flex items-center">
+          //         <span className="text-red-500 mr-2">•</span>
+          //         Знижка 10% для груп від 5 осіб
+          //       </li>
+          //       <li className="flex items-center">
+          //         <span className="text-red-500 mr-2">•</span>
+          //         Спеціальні комбо-меню для компаній
+          //       </li>
+          //       <li className="flex items-center">
+          //         <span className="text-red-500 mr-2">•</span>
+          //         Безкоштовний welcome drink
+          //       </li>
+          //     </ul>
+          //   </div>
 
-            <div className="bg-white/5 p-8 rounded-lg backdrop-blur-sm shadow-xl">
-              <div className="flex items-center space-x-4 mb-6">
-                <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z" />
-                </svg>
-                <h4 className="text-2xl font-serif">Приватні Події</h4>
-              </div>
-              <p className="text-gray-400 mb-4">
-                Організуйте незабутню подію в Cherry Lips! Ми допоможемо створити особливу атмосферу для вашого свята.
-              </p>
-              <ul className="text-gray-400 space-y-2">
-                <li className="flex items-center">
-                  <span className="text-red-500 mr-2">•</span>
-                  Повна оренда закладу для приватних подій
-                </li>
-                <li className="flex items-center">
-                  <span className="text-red-500 mr-2">•</span>
-                  Індивідуальне меню під ваш бюджет
-                </li>
-                <li className="flex items-center">
-                  <span className="text-red-500 mr-2">•</span>
-                  Професійне обслуговування та декор
-                </li>
-                <li className="flex items-center">
-                  <span className="text-red-500 mr-2">•</span>
-                  Спеціальні умови для корпоративів
-                </li>
-              </ul>
-            </div>
-          </div>
+          //   <div className="bg-white/5 p-8 rounded-lg backdrop-blur-sm shadow-xl">
+          //     <div className="flex items-center space-x-4 mb-6">
+          //       <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          //         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z" />
+          //       </svg>
+          //       <h4 className="text-2xl font-serif">Приватні Події</h4>
+          //     </div>
+          //     <p className="text-gray-400 mb-4">
+          //       Організуйте незабутню подію в Cherry Lips! Ми допоможемо створити особливу атмосферу для вашого свята.
+          //     </p>
+          //     <ul className="text-gray-400 space-y-2">
+          //       <li className="flex items-center">
+          //         <span className="text-red-500 mr-2">•</span>
+          //         Повна оренда закладу для приватних подій
+          //       </li>
+          //       <li className="flex items-center">
+          //         <span className="text-red-500 mr-2">•</span>
+          //         Індивідуальне меню під ваш бюджет
+          //       </li>
+          //       <li className="flex items-center">
+          //         <span className="text-red-500 mr-2">•</span>
+          //         Професійне обслуговування та декор
+          //       </li>
+          //       <li className="flex items-center">
+          //         <span className="text-red-500 mr-2">•</span>
+          //         Спеціальні умови для корпоративів
+          //       </li>
+          //     </ul>
+          //   </div>
+          // </div> */}
         </div>
       </FadeIn>
     </section>

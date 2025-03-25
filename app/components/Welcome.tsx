@@ -33,11 +33,11 @@ const Welcome = () => {
             <div>
               <h2 className="text-red-500 text-xl mb-4 uppercase">Cherry Lips showbar</h2>
               <h3 className="text-4xl md:text-5xl font-serif mb-8 uppercase">
-                НІЧНИЙ КЛУБ & СТРИПТИЗ КЛУБ В САМОМУ СЕРЦІ Ужгорода
+                В САМОМУ СЕРЦІ Ужгорода
               </h3>
               <div className="space-y-6 text-gray-300">
                 <p>
-                Cherry Lips — це більше, ніж клуб. Це вишуканий інтер&apos;єр, приватні зони для відпочинку, ексклюзивний бар та найкраще шоу в місті.
+                  Cherry Lips - це місце, де панує особлива, збудлива і загадкова атмосфера. У повітрі відчувається суміш адреналіну, азарту і передчуття. Гучна музика з глибокими басами, м&apos;яка напівтемрява, підсвічена неоновими вогнями, і запах дорогого алкоголю створюють обстановку, що розслабляє і збуджує одночасно.
                 </p>
               </div>
               <Link 
@@ -73,7 +73,7 @@ const Welcome = () => {
             <motion.div 
               ref={secondImageRef}
               style={{ y: y2 }}
-              className="relative aspect-[4/4] bg-gradient-to-br from-red-900/50 to-black/50 rounded-lg overflow-hidden"
+              className="relative aspect-[3/4] bg-gradient-to-br from-red-900/50 to-black/50 rounded-lg overflow-hidden"
             >
               <Image
                 src="/main2.jpg"
@@ -87,9 +87,9 @@ const Welcome = () => {
 
             {/* Text Content */}
             <div>
-              <h2 className="text-red-500 text-xl mb-4 uppercase">Чому обирають нас?</h2>
-              <h3 className="text-4xl md:text-5xl font-serif mb-8">
-                НЕЗАБУТНІ СТРИПТИЗ ШОУ & АТМОСФЕРА
+              {/* <h2 className="text-red-500 text-xl mb-4 uppercase"></h2> */}
+              <h3 className="text-4xl md:text-5xl font-serif mb-8 uppercase">
+              Чому обирають нас?
               </h3>
               <div className="space-y-6 text-gray-300">
                 <ul className="space-y-6">
@@ -97,25 +97,37 @@ const Welcome = () => {
                     <svg className="w-6 h-6 text-red-500 mr-4 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-lg">Захопливі шоу – кожна ніч неповторна.</span>
+                    <span className="text-lg">Захоплеві шоу - це поєднання пластики, пристрасті і мистецтво спокушання. Граціозні рухи, ефектні трюки на пілоні - все це заворожує і приковує погляд.</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="w-6 h-6 text-red-500 mr-4 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-lg">Найкрасивіші дівчата – витонченість, харизма та справжня пристрасть.</span>
+                    <span className="text-lg">Приватні зони для відпочинку - незабутні емоції від розслаблення і насолоди до збудження.</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="w-6 h-6 text-red-500 mr-4 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-lg">Шикарний інтер&apos;єр – затишок і розкіш у кожній деталі.</span>
+                    <span className="text-lg">Ексклюзивний бар - це завжди більше, ніж просто напої. Це емоції, люди, історії та настрій ночі.</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="w-6 h-6 text-red-500 mr-4 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-lg">Картка лояльності – спеціальні привілеї для наших гостей.</span>
+                    <span className="text-lg">Димні кальяни - це особливий настрій розслаблення, легка ейфорія, неспішні бесіди. Можна забути про час, насолоджуючись димними клубами і неповторним шоу.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-6 h-6 text-red-500 mr-4 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-lg">Запальне караоке - це місце, де зливаються музика, емоції та енергія. У репертуарі сотні пісень: від класики до сучасних хітів.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-6 h-6 text-red-500 mr-4 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-lg">Танцівниці - це поєднання краси, витонченості, грації та артистизму. З витонченими лініями тіла, плавними рухами наповнюють атмосферу клубу енергією спокушання.</span>
                   </li>
                 </ul>
               </div>

@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import Masonry from 'react-masonry-css'
 import FadeIn from './FadeIn'
 import Link from 'next/link'
 
@@ -13,23 +12,14 @@ const Gallery = () => {
     '/gallery/4.jpg',
     '/gallery/5.jpg',
     '/gallery/6.jpg',
-    
     '/gallery/7.jpg',
     '/gallery/8.jpg',
     '/gallery/11.jpg',
     '/gallery/9.jpg',
     '/gallery/10.jpg',
-
     '/gallery/12.jpg',
     // Add more images as needed
   ]
-
-  const breakpointColumnsObj = {
-    default: 4,
-    1100: 3,
-    700: 2,
-    500: 1
-  }
 
   return (
     <section id="gallery" className="relative bg-black text-white py-24 overflow-hidden">
@@ -43,28 +33,24 @@ const Gallery = () => {
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <h2 className="text-red-500 text-xl mb-4 text-center uppercase">АТМОСФЕРА Cherry Lips showbar</h2>
           <h3 className="text-4xl md:text-5xl font-serif mb-16 text-center">
-            ЕКСКЛЮЗИВНА АТМОСФЕРА ДЛЯ<br />
+            ЕКСКЛЮЗИВНА АТМОСФЕРА <br />
             ЕЛЕГАНТНОСТІ & ЕРОТИКИ
           </h3>
 
-          <Masonry
-            breakpointCols={breakpointColumnsObj}
-            className="flex -ml-4 w-auto"
-            columnClassName="pl-4 bg-black"
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {images.map((image, index) => (
-              <div key={index} className="mb-4 relative overflow-hidden group">
+              <div key={index} className="aspect-[3/4] relative overflow-hidden group">
                 <Image
                   src={image}
                   alt={`Gallery image ${index + 1}`}
-                  width={800}
-                  height={1200}
-                  className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             ))}
-          </Masonry>
+          </div>
 
           {/* Reserve Table Button */}
           <div className="text-center mt-12">
