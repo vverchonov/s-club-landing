@@ -9,7 +9,7 @@ const Hero = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/hero.JPG"
+          src="/hero.jpg"
           alt="Cherry Lips Hero Background"
           fill
           className="object-cover"
