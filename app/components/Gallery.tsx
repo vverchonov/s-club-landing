@@ -3,23 +3,46 @@
 import Image from 'next/image'
 import FadeIn from './FadeIn'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
+
+const useMediaQuery = (query: string) => {
+  const [matches, setMatches] = useState(false)
+
+  useEffect(() => {
+    const media = window.matchMedia(query)
+    if (media.matches !== matches) {
+      setMatches(media.matches)
+    }
+    const listener = () => setMatches(media.matches)
+    window.addEventListener('resize', listener)
+    return () => window.removeEventListener('resize', listener)
+  }, [matches, query])
+
+  return matches
+}
 
 const Gallery = () => {
-  const images = [
+  const isMobile = useMediaQuery('(max-width: 640px)')
+  const allImages = [
     '/gallery/1.jpg',
     '/gallery/2.jpg',
     '/gallery/3.jpg',
     '/gallery/4.jpg',
-    '/gallery/5.jpg',
-    '/gallery/6.jpg',
-    '/gallery/7.jpg',
-    '/gallery/8.jpg',
-    '/gallery/11.jpg',
-    '/gallery/9.jpg',
-    '/gallery/10.jpg',
-    '/gallery/12.jpg',
-    // Add more images as needed
+    '/gallery/5.JPG',
+    '/gallery/6.JPG',
+    '/gallery/7.JPG',
+    '/gallery/8.JPG',
+    '/gallery/11.JPG',
+    '/gallery/9.JPG',
+    '/gallery/10.JPG',
+    '/gallery/12.JPG',
+    '/gallery/13.JPG',
+    '/gallery/14.JPG',
+    '/gallery/15.JPG',
+    '/gallery/16.JPG',
   ]
+
+  const images = isMobile ? allImages.slice(0, 4) : allImages
 
   return (
     <section id="gallery" className="relative bg-black text-white py-24 overflow-hidden">
