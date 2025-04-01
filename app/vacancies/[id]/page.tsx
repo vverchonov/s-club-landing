@@ -25,8 +25,8 @@ export default function VacancyPage() {
   }
 
   return (
-    <div className={`min-h-screen bg-black text-white py-24 relative ${params.id === 'dancer' ? 'before:content-[""] before:absolute before:inset-0 before:bg-[url("/back.jpg")] before:bg-cover before:bg-center before:opacity-30 before:z-0' : ''}`}>
-      <div className={`absolute inset-0 overflow-hidden ${params.id === 'dancer' ? 'hidden' : ''}`}>
+    <div className={`min-h-screen bg-black text-white py-24 relative ${params.id === 'dancer' || params.id === 'gogo-dancer' ? 'before:content-[""] before:absolute before:inset-0 before:bg-[url("/back.jpg")] before:bg-cover before:bg-center before:opacity-30 before:z-0' : ''}`}>
+      <div className={`absolute inset-0 overflow-hidden ${params.id === 'dancer' ||params.id === 'gogo-dancer' ? 'hidden' : ''}`}>
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-red-600/20 rounded-full blur-[80px]" />
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-red-600/20 rounded-full blur-[80px]" />
       </div>
