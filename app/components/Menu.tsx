@@ -14,7 +14,12 @@ const Menu = () => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-12 items-center">
             {/* Food Section */}
-            <Link href="/menu/food" className="group">
+            <a 
+              href="/menu.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="group"
+            >
               <div className="text-center space-y-4">
                 <div className="relative w-48 h-48 mx-auto flex items-center justify-center">
                   <RestaurantMenuIcon 
@@ -24,7 +29,7 @@ const Menu = () => {
                 </div>
                 <h3 className="text-3xl font-serif tracking-wider group-hover:text-red-500 transition-colors">МЕНЮ</h3>
               </div>
-            </Link>
+            </a>
 
             {/* Logo Section */}
             <div className="flex justify-center items-center">
