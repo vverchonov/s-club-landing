@@ -54,6 +54,8 @@ export default function BookPage() {
     const [error, setError] = useState<string | null>(null);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [reservationData, setReservationData] = useState<{ tableNumber: number; name: string; phone: string; date: string; startTime: string; endTime: string; reservationId: string; createdAt: string } | null>(null);
+    // Add a new state for form submission loading
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Function to validate date format
     const isValidDate = useCallback((dateString: string): boolean => {
@@ -160,6 +162,8 @@ export default function BookPage() {
             return; // Button should be disabled anyway, but extra safety
         }
 
+        setIsSubmitting(true); // Start loading
+
         try {
             const response = await fetch('/api/tables', {
                 method: 'POST',
@@ -180,29 +184,22 @@ export default function BookPage() {
             const data = await response.json();
 
             if (response.ok) {
-                // Store reservation data for modal
-                const reservationDetails = {
-                    tableNumber: selectedTable,
+                // Set reservation data for modal
+                setReservationData({
+                    tableNumber: selectedTable!,
                     name: formData.name,
                     phone: formData.phone,
                     date: formData.date,
                     startTime: formData.startTime,
                     endTime: formData.endTime,
-                    reservationId: data.reservation?.id || 'N/A',
-                    createdAt: new Date().toLocaleString('uk-UA', {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        second: '2-digit'
-                    })
-                };
+                    reservationId: data.reservationId || 'N/A',
+                    createdAt: new Date().toLocaleString('uk-UA')
+                });
 
-                setReservationData(reservationDetails);
+                // Show success modal
                 setShowSuccessModal(true);
 
-                // Reset form completely
+                // Reset form
                 setFormData({
                     name: '',
                     phone: '',
@@ -212,11 +209,11 @@ export default function BookPage() {
                 });
                 setSelectedTable(null);
 
-                // Refresh table availability for the new date
-                fetchTableAvailability(new Date().toISOString().split('T')[0]);
+                // Refetch table availability data
+                await fetchTableAvailability(formData.date);
+
             } else {
-                // Error from API - keep all selections
-                toast.error(`Не вдалося створити бронювання: ${data.error || 'Невідома помилка'}`, {
+                toast.error(data.error || 'Помилка при створенні бронювання', {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -228,9 +225,8 @@ export default function BookPage() {
                 });
             }
         } catch (error) {
-            // Network or other error - keep all selections
-            console.error('Error submitting form:', error);
-            toast.error('Помилка мережі. Спробуйте ще раз.', {
+            console.error('Booking error:', error);
+            toast.error('Помилка при створенні бронювання', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -240,6 +236,8 @@ export default function BookPage() {
                 progress: undefined,
                 theme: "dark",
             });
+        } finally {
+            setIsSubmitting(false); // Stop loading
         }
     };
 
@@ -339,27 +337,38 @@ export default function BookPage() {
                                             const tableData = tableAvailability?.[tableNumber];
                                             const isAvailable = tableData?.available;
                                             const isSelected = selectedTable === tableNumber;
+                                            const hasAvailableHours = tableData?.availableHours && tableData.availableHours.length > 0;
+                                            const isFullyBooked = isAvailable === false || !hasAvailableHours;
 
                                             return (
                                                 <div
                                                     key={tableNumber}
-                                                    onClick={() => handleTableClick(tableNumber)}
+                                                    onClick={() => !isFullyBooked && handleTableClick(tableNumber)}
                                                     className={`
-                            w-20 h-20 border-2 rounded-lg transition-all duration-200 flex items-center justify-center relative
-                            ${isSelected
+                                                        w-20 h-20 border-2 rounded-lg transition-all duration-200 flex items-center justify-center relative group
+                                                        ${isSelected
                                                             ? 'border-red-500 bg-red-500/20 shadow-lg shadow-red-500/30 cursor-pointer'
-                                                            : isAvailable === false
+                                                            : isFullyBooked
                                                                 ? 'border-gray-600 bg-gray-800/50 cursor-not-allowed opacity-50'
                                                                 : 'border-white/20 bg-white/10 hover:border-red-500 hover:bg-white/20 cursor-pointer'
                                                         }
-                          `}
+                                                    `}
+                                                    title={isFullyBooked ? `Столик ${tableNumber} повністю заброньований на цю дату` : `Обрати столик ${tableNumber}`}
                                                 >
                                                     <span className={`font-semibold ${isSelected ? 'text-red-500' : 'text-white'}`}>
                                                         {tableNumber}
                                                     </span>
 
-                                                    {isAvailable === false && (
+                                                    {isFullyBooked && (
                                                         <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
+                                                    )}
+
+                                                    {/* Hover tooltip for fully booked tables */}
+                                                    {isFullyBooked && (
+                                                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black/90 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10">
+                                                            Повністю заброньований
+                                                            <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black/90"></div>
+                                                        </div>
                                                     )}
                                                 </div>
                                             );
@@ -479,7 +488,7 @@ export default function BookPage() {
                                         const hasTableSelected = selectedTable !== null;
                                         const isTableAvailable = selectedTable ? tableAvailability?.[selectedTable]?.available : false;
 
-                                        const isDisabled = !hasPhone || !hasTableSelected || !isTableAvailable;
+                                        const isDisabled = !hasPhone || !hasTableSelected || !isTableAvailable || isSubmitting;
 
                                         // Generate validation message
                                         let validationMessage = '';
@@ -496,15 +505,23 @@ export default function BookPage() {
                                                 <button
                                                     type="submit"
                                                     disabled={isDisabled}
-                                                    className={`px-8 py-3 rounded-full text-lg font-medium tracking-wider shadow-lg transition-colors duration-300 ${isDisabled
+                                                    className={`px-8 py-3 rounded-full text-lg font-medium tracking-wider shadow-lg transition-colors duration-300 flex items-center justify-center mx-auto space-x-2 ${isDisabled
                                                         ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
                                                         : 'bg-[#8B0000] hover:bg-[#660000] text-white'
                                                         }`}
                                                 >
-                                                    ЗАБРОНЮВАТИ
+                                                    {isSubmitting ? (
+                                                        <>
+                                                            {/* Loading Spinner */}
+                                                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                                                            <span>Створення...</span>
+                                                        </>
+                                                    ) : (
+                                                        <span>ЗАБРОНЮВАТИ</span>
+                                                    )}
                                                 </button>
 
-                                                {isDisabled && validationMessage && (
+                                                {isDisabled && validationMessage && !isSubmitting && (
                                                     <p className="text-red-400 text-sm mt-2">
                                                         {validationMessage}
                                                     </p>
