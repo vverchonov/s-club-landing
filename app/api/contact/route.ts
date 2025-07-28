@@ -33,7 +33,7 @@ export async function POST(request: Request) {
     const message = formData.get("message");
 
     // Validate required fields
-    if ( !phone) {
+    if (!phone) {
       return NextResponse.json(
         { error: "Телефон обов'язковий!" },
         { status: 400 }

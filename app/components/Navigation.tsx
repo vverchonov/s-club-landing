@@ -16,12 +16,12 @@ const Navigation = () => {
     { name: 'ВІДГУКИ', href: '#testimonials' },
     // { name: 'НОВИНИ', href: '#news' },
     { name: 'ВАКАНСІЇ', href: '/vacancies' },
-    { name: 'КОНТАКТИ', href: '#contact' },
+    { name: 'БРОНЮВАННЯ', href: '/book' },
   ]
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
-    
+
     if (href.startsWith('#')) {
       if (isMainPage) {
         // If we're on the main page, scroll to the section
@@ -50,7 +50,7 @@ const Navigation = () => {
               <Image src="/logo.png" alt="Cherry Lips Логотип" width={72} height={72} className="h-24 w-auto" />
             </a>
           </div>
-          
+
           {/* Desktop Navigation - Centered */}
           <div className="hidden md:flex items-center justify-center flex-1 space-x-12 px-8">
             {navItems.map((item) => (
@@ -83,10 +83,9 @@ const Navigation = () => {
       </div>
 
       {/* Mobile menu */}
-      <div 
-        className={`md:hidden bg-black overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'
-        }`}
+      <div
+        className={`md:hidden bg-black overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'
+          }`}
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {navItems.map((item, index) => (
@@ -94,9 +93,8 @@ const Navigation = () => {
               key={item.name}
               href={item.href}
               onClick={(e) => handleClick(e, item.href)}
-              className={`text-white hover:text-red-500 block px-3 py-2 text-lg font-medium tracking-wider transform transition-all duration-300 ${
-                isOpen ? 'translate-x-0 opacity-100' : 'translate-x-4 opacity-0'
-              }`}
+              className={`text-white hover:text-red-500 block px-3 py-2 text-lg font-medium tracking-wider transform transition-all duration-300 ${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-4 opacity-0'
+                }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               {item.name}

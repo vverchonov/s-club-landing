@@ -18,9 +18,9 @@ export default function Contact() {
         method: 'POST',
         body: formData,
       })
-      
+
       const data = await response.json()
-      
+
       if (response.ok) {
         toast.success('Повідомлення успішно надіслано', {
           position: "top-right",
@@ -45,7 +45,7 @@ export default function Contact() {
           theme: "dark",
         })
       }
-    } catch  {
+    } catch {
       toast.error('Помилка при відправці повідомлення', {
         position: "top-right",
         autoClose: 5000,
@@ -72,9 +72,9 @@ export default function Contact() {
 
       <FadeIn>
         <div className="relative max-w-6xl mx-auto px-4">
-          <h2 className="text-red-500 text-xl mb-4 text-center uppercase">Звя&apos;жіться з нами</h2>
+          <h2 className="text-red-500 text-xl mb-4 text-center uppercase">contact us</h2>
           <h3 className="text-4xl md:text-5xl font-serif mb-16 text-center">
-            ЗАБРОНЮВАТИ СТОЛИК
+            Звя&apos;жіться з нами
           </h3>
 
           <div className="grid md:grid-cols-2 gap-12 items-start">
@@ -178,9 +178,8 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className={`px-8 py-3 bg-[#8B0000] hover:bg-[#660000] text-white rounded-full text-lg font-medium tracking-wider shadow-lg transition-colors duration-300 ${
-                      isLoading ? 'opacity-75 cursor-not-allowed' : ''
-                    }`}
+                    className={`px-8 py-3 bg-[#8B0000] hover:bg-[#660000] text-white rounded-full text-lg font-medium tracking-wider shadow-lg transition-colors duration-300 ${isLoading ? 'opacity-75 cursor-not-allowed' : ''
+                      }`}
                   >
                     {isLoading ? 'Надсилання...' : 'НАДІСЛАТИ'}
                   </button>

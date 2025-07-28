@@ -13,7 +13,7 @@ const Welcome = () => {
     target: firstImageRef,
     offset: ["start end", "end start"]
   })
-  
+
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -30])
   const y2 = useTransform(scrollYProgress, [0, 1], [0, 30])
 
@@ -24,7 +24,7 @@ const Welcome = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,0,0,0.15)_0%,transparent_70%)]"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#8B0000]/20 blur-[120px]"></div>
       </div>
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* First Row */}
         <FadeIn>
@@ -40,16 +40,16 @@ const Welcome = () => {
                   Cherry Lips - це місце, де панує особлива, збудлива і загадкова атмосфера. У повітрі відчувається суміш адреналіну, азарту і передчуття. Гучна музика з глибокими басами, м&apos;яка напівтемрява, підсвічена неоновими вогнями, і запах дорогого алкоголю створюють обстановку, що розслабляє і збуджує одночасно.
                 </p>
               </div>
-              <Link 
-                href="#contact" 
+              <Link
+                href="/book"
                 className="inline-block px-8 py-3 mt-8 text-lg font-medium bg-[#8B0000] hover:bg-[#660000] text-white transition-colors duration-300 rounded-full tracking-wider shadow-lg"
               >
-                ЗАРЕЗЕРВУВАТИ 
+                ЗАРЕЗЕРВУВАТИ
               </Link>
             </div>
 
             {/* Image */}
-            <motion.div 
+            <motion.div
               ref={firstImageRef}
               style={{ y: y1 }}
               className="relative aspect-[4/4] bg-gradient-to-br from-red-900/50 to-black/50 rounded-lg overflow-hidden"
@@ -70,7 +70,7 @@ const Welcome = () => {
         <FadeIn>
           <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Image */}
-            <motion.div 
+            <motion.div
               ref={secondImageRef}
               style={{ y: y2 }}
               className="relative aspect-[3/4] bg-gradient-to-br from-red-900/50 to-black/50 rounded-lg overflow-hidden"
@@ -89,7 +89,7 @@ const Welcome = () => {
             <div>
               {/* <h2 className="text-red-500 text-xl mb-4 uppercase"></h2> */}
               <h3 className="text-4xl md:text-5xl font-serif mb-8 uppercase">
-              Чому обирають нас?
+                Чому обирають нас?
               </h3>
               <div className="space-y-6 text-gray-300">
                 <ul className="space-y-6">
@@ -131,11 +131,11 @@ const Welcome = () => {
                   </li>
                 </ul>
               </div>
-              <Link 
-                href="#contact" 
+              <Link
+                href="/book"
                 className="inline-block px-8 py-3 mt-8 text-lg font-medium bg-[#8B0000] hover:bg-[#660000] text-white transition-colors duration-300 rounded-full tracking-wider shadow-lg"
               >
-                ЗАРЕЗЕРВУВАТИ 
+                ЗАРЕЗЕРВУВАТИ
               </Link>
             </div>
           </div>

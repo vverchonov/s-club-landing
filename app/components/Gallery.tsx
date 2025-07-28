@@ -78,8 +78,8 @@ const Gallery = () => {
 
           {/* Reserve Table Button */}
           <div className="text-center mt-12">
-            <Link 
-              href="#contact" 
+            <Link
+              href="/book"
               className="inline-block px-12 py-4 text-xl font-medium bg-[#8B0000] hover:bg-[#660000] text-white transition-colors duration-300 rounded-full tracking-wider shadow-lg"
             >
               РЕЗЕРВУВАТИ СТОЛИК

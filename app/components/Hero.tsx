@@ -18,7 +18,7 @@ const Hero = () => {
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
       </div>
-      
+
       {/* Content */}
       <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
         <div className="max-w-4xl mx-auto -mt-20">
@@ -28,8 +28,8 @@ const Hero = () => {
           <p className="text-lg md:text-xl text-white/90 mb-8 font-light leading-relaxed">
             Ласкаво просимо до Cherry Lips — місця, де стиль, пристрасть і розкішне дозвілля поєднуються в єдиному ритмі. На тебе чекають найкрасивіші дівчата, захопливі шоу-програми та атмосфера, яка допоможе забути про буденні турботи.
           </p>
-          <Link 
-            href="#contact" 
+          <Link
+            href="/book"
             className="inline-block px-8 py-3 text-lg font-medium bg-[#8B0000] hover:bg-[#660000] text-white transition-colors duration-300 rounded-full tracking-wider shadow-lg"
           >
             РЕЗЕРВУВАТИ СТОЛИК
@@ -50,7 +50,7 @@ const Hero = () => {
               <Link target='_blank' href="https://www.google.com/maps/place/Verkhovyns'ka+St,+38,+Uzhhorod,+Zakarpats'ka+oblast,+Ukraine,+88000/@48.6483487,22.2682014,13.67z/data=!4m6!3m5!1s0x473918180c665683:0x7cb1ba0c90e95822!8m2!3d48.6454378!4d22.2748502!16s%2Fg%2F1vm_wnkz?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" className="text-xs md:text-sm">вулиця Верховинська, 38</Link>
               <Link target='_blank' href="https://www.google.com/maps/place/Verkhovyns'ka+St,+38,+Uzhhorod,+Zakarpats'ka+oblast,+Ukraine,+88000/@48.6483487,22.2682014,13.67z/data=!4m6!3m5!1s0x473918180c665683:0x7cb1ba0c90e95822!8m2!3d48.6454378!4d22.2748502!16s%2Fg%2F1vm_wnkz?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" className="text-xs md:text-sm">Ужгород, Закарпатська область</Link>
             </div>
-            
+
             <div className="flex flex-col items-center p-2">
               <svg className="w-5 h-5 text-red-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -58,7 +58,7 @@ const Hero = () => {
               <h3 className="text-red-500 font-medium mb-1 text-xs md:text-sm">ГОДИНИ РОБОТИ</h3>
               <p className="text-xs md:text-sm">Відкриття незабаром</p>
             </div>
-            
+
             <div className="flex flex-col items-center p-2">
               <svg className="w-5 h-5 text-red-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -66,7 +66,7 @@ const Hero = () => {
               <h3 className="text-red-500 font-medium mb-1 text-xs md:text-sm">ТЕЛЕФОН</h3>
               <Link target='_blank' href="tel:+38 (099) 011 1999" className="text-xs md:text-sm">+38 (099) 011 1999</Link>
             </div>
-            
+
             <div className="flex flex-col items-center p-2">
               <svg className="w-5 h-5 text-red-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />

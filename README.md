@@ -4,11 +4,13 @@
 
 ## 🚀 Технології
 
-- **Next.js 14** - React фреймворк з серверним рендерингом
+- **Next.js 15** - React фреймворк з серверним рендерингом
 - **React** - JavaScript бібліотека для створення користувацького інтерфейсу
 - **Tailwind CSS** - Utility-first CSS фреймворк
 - **TypeScript** - Типізована надбудова над JavaScript
 - **Framer Motion** - Бібліотека для анімацій
+- **MongoDB** - NoSQL база даних
+- **Mongoose** - ODM для MongoDB
 
 ## ✨ Особливості
 
@@ -54,13 +56,19 @@
 ```
 s-club-landing/
 ├── app/
-│   ├── components/         # React компоненти
-│   ├── layout.tsx         # Головний layout
-│   └── page.tsx           # Головна сторінка
-├── public/                # Статичні файли
-│   ├── gallery/          # Зображення галереї
-│   └── logo.png         # Логотип
-└── styles/               # Глобальні стилі
+│   ├── api/              # API endpoints
+│   │   ├── contact/      # Contact form API
+│   │   └── tables/       # Tables booking API
+│   ├── components/       # React компоненти
+│   ├── book/            # Booking page
+│   ├── layout.tsx       # Головний layout
+│   └── page.tsx         # Головна сторінка
+├── lib/                 # Utility functions
+│   └── mongodb.ts       # MongoDB connection
+├── public/              # Статичні файли
+│   ├── gallery/         # Зображення галереї
+│   └── logo.png        # Логотип
+└── styles/              # Глобальні стилі
 ```
 
 ## 🎯 Компоненти
@@ -74,6 +82,18 @@ s-club-landing/
 - **FadeIn** - Компонент для анімації появи елементів
 
 ## 🔧 Налаштування
+
+### MongoDB Configuration
+
+1. Створіть файл `.env.local` в корені проекту
+2. Додайте наступну змінну:
+   ```
+   MONGODB_URI=mongodb://localhost:27017/cherry-lips
+   ```
+3. Для production використовуйте MongoDB Atlas або ваш MongoDB сервіс:
+   ```
+   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/cherry-lips?retryWrites=true&w=majority
+   ```
 
 ### Зображення
 
