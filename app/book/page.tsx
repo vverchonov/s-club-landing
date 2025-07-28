@@ -177,7 +177,7 @@ export default function BookPage() {
                     date: formData.date,
                     startTime: formData.startTime,
                     endTime: formData.endTime,
-                    description: `Бронювання столика ${selectedTable} для ${formData.name} на ${formData.date} з ${formData.startTime} до ${formData.endTime}`
+                    description: `Бронювання столика ${selectedTable} для ${formData.name} (${formData.phone}) на ${formData.date} з ${formData.startTime} до ${formData.endTime}`
                 }),
             });
 
