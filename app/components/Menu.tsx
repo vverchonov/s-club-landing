@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import Image from 'next/image'
 import FadeIn from './FadeIn'
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu'

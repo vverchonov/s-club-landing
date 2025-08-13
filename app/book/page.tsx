@@ -77,106 +77,9 @@ const isTimeAfter = (time1: string, time2: string): boolean => {
 };
 
 // Update the getAvailableEndTimeOptions function
-const getAvailableEndTimeOptions = (startTime: string) => {
-    if (!selectedTable || !tableAvailability?.[selectedTable]) {
-        return validTimeOptions.filter(time => isTimeAfter(time, startTime));
-    }
 
-    const availableHours = tableAvailability[selectedTable].availableHours || validTimeOptions;
 
-    // Find the next booked time after the selected start time
-    const startIndex = validTimeOptions.indexOf(startTime);
-    let nextBookedIndex = validTimeOptions.length;
 
-    for (let i = startIndex + 1; i < validTimeOptions.length; i++) {
-        if (!availableHours.includes(validTimeOptions[i])) {
-            nextBookedIndex = i;
-            break;
-        }
-    }
-
-    // Return only times that are after start time and before next booked slot
-    return validTimeOptions.filter((time, index) => {
-        return isTimeAfter(time, startTime) && index < nextBookedIndex && availableHours.includes(time);
-    });
-};
-
-// Update the handleInputChange function
-const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-
-    if (name === 'date') {
-        // Deselect table when date changes
-        setSelectedTable(null);
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-
-        // Fetch table availability for the new date
-        fetchTableAvailability(value);
-    } else if (name === 'startTime') {
-        // Get available end time options based on selected start time
-        const availableEndTimes = getAvailableEndTimeOptions(value);
-
-        // Auto-adjust end time to be 2 hours after start time
-        const [hours, minutes] = value.split(':').map(Number);
-        let endHours = hours + 2;
-        const endMinutes = minutes;
-
-        // Handle overflow to next day (after midnight)
-        if (endHours >= 24) {
-            endHours = endHours - 24;
-        }
-
-        const calculatedEndTime = `${endHours.toString().padStart(2, '0')}:${endMinutes.toString().padStart(2, '0')}`;
-
-        // Find the best available end time
-        let bestEndTime;
-
-        if (availableEndTimes.length > 0) {
-            // If calculated end time (2 hours later) is available, use it
-            if (availableEndTimes.includes(calculatedEndTime)) {
-                bestEndTime = calculatedEndTime;
-            } else {
-                // Find the closest available time that's >= calculated end time
-                const timeAfterCalculated = availableEndTimes.find(time =>
-                    compareTime(time, calculatedEndTime) >= 0
-                );
-                if (timeAfterCalculated) {
-                    bestEndTime = timeAfterCalculated;
-                } else {
-                    // If no time >= calculated time, use the first available time after start
-                    bestEndTime = availableEndTimes[0];
-                }
-            }
-        } else {
-            // Fallback - find any time after start time
-            const timesAfterStart = validTimeOptions.filter(time => isTimeAfter(time, value));
-            bestEndTime = timesAfterStart[0] || value;
-        }
-
-        setFormData(prev => ({
-            ...prev,
-            startTime: value,
-            endTime: bestEndTime
-        }));
-    } else if (name === 'endTime') {
-        // Only update if the selected end time is valid
-        const availableEndTimes = getAvailableEndTimeOptions(formData.startTime);
-        if (availableEndTimes.includes(value) && isTimeAfter(value, formData.startTime)) {
-            setFormData(prev => ({
-                ...prev,
-                [name]: value
-            }));
-        }
-    } else {
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    }
-};
 
 export default function BookPage() {
     const [selectedTable, setSelectedTable] = useState<number | null>(null);
@@ -239,6 +142,108 @@ export default function BookPage() {
             return validTimeOptions;
         }
         return tableAvailability[selectedTable].availableHours || validTimeOptions;
+    };
+
+    // Function to get available end time options based on selected start time
+    const getAvailableEndTimeOptions = (startTime: string) => {
+        if (!selectedTable || !tableAvailability?.[selectedTable]) {
+            return validTimeOptions.filter(time => isTimeAfter(time, startTime));
+        }
+
+        const availableHours = tableAvailability[selectedTable].availableHours || validTimeOptions;
+
+        // Find the next booked time after the selected start time
+        const startIndex = validTimeOptions.indexOf(startTime);
+        let nextBookedIndex = validTimeOptions.length;
+
+        for (let i = startIndex + 1; i < validTimeOptions.length; i++) {
+            if (!availableHours.includes(validTimeOptions[i])) {
+                nextBookedIndex = i;
+                break;
+            }
+        }
+
+        // Return only times that are after start time and before next booked slot
+        return validTimeOptions.filter((time, index) => {
+            return isTimeAfter(time, startTime) && index < nextBookedIndex && availableHours.includes(time);
+        });
+    };
+
+    // Function to handle input changes
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+
+        if (name === 'date') {
+            // Deselect table when date changes
+            setSelectedTable(null);
+            setFormData(prev => ({
+                ...prev,
+                [name]: value
+            }));
+
+            // Fetch table availability for the new date
+            fetchTableAvailability(value);
+        } else if (name === 'startTime') {
+            // Get available end time options based on selected start time
+            const availableEndTimes = getAvailableEndTimeOptions(value);
+
+            // Auto-adjust end time to be 2 hours after start time
+            const [hours, minutes] = value.split(':').map(Number);
+            let endHours = hours + 2;
+            const endMinutes = minutes;
+
+            // Handle overflow to next day (after midnight)
+            if (endHours >= 24) {
+                endHours = endHours - 24;
+            }
+
+            const calculatedEndTime = `${endHours.toString().padStart(2, '0')}:${endMinutes.toString().padStart(2, '0')}`;
+
+            // Find the best available end time
+            let bestEndTime;
+
+            if (availableEndTimes.length > 0) {
+                // If calculated end time (2 hours later) is available, use it
+                if (availableEndTimes.includes(calculatedEndTime)) {
+                    bestEndTime = calculatedEndTime;
+                } else {
+                    // Find the closest available time that's >= calculated end time
+                    const timeAfterCalculated = availableEndTimes.find(time =>
+                        compareTime(time, calculatedEndTime) >= 0
+                    );
+                    if (timeAfterCalculated) {
+                        bestEndTime = timeAfterCalculated;
+                    } else {
+                        // If no time >= calculated time, use the first available time after start
+                        bestEndTime = availableEndTimes[0];
+                    }
+                }
+            } else {
+                // Fallback - find any time after start time
+                const timesAfterStart = validTimeOptions.filter(time => isTimeAfter(time, value));
+                bestEndTime = timesAfterStart[0] || value;
+            }
+
+            setFormData(prev => ({
+                ...prev,
+                startTime: value,
+                endTime: bestEndTime
+            }));
+        } else if (name === 'endTime') {
+            // Only update if the selected end time is valid
+            const availableEndTimes = getAvailableEndTimeOptions(formData.startTime);
+            if (availableEndTimes.includes(value) && isTimeAfter(value, formData.startTime)) {
+                setFormData(prev => ({
+                    ...prev,
+                    [name]: value
+                }));
+            }
+        } else {
+            setFormData(prev => ({
+                ...prev,
+                [name]: value
+            }));
+        }
     };
 
     // Function to get available time options for selected table
