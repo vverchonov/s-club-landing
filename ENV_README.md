@@ -40,9 +40,9 @@ MONGODB_URI=mongodb://localhost:27017/cherry-lips
 # Email Service Configuration
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
-EMAIL_USER=your-email@gmail.com
+EMAIL_USER=cherrylips.showbar@gmail.com
 EMAIL_PASS=your-app-password
-EMAIL_FROM=your-email@gmail.com
+EMAIL_FROM=cherrylips.showbar@gmail.com
 ```
 
 **Description**: SMTP configuration for sending contact form emails.
@@ -84,9 +84,9 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 MONGODB_URI=mongodb://localhost:27017/cherry-lips
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
-EMAIL_USER=your-dev-email@gmail.com
+EMAIL_USER=cherrylips.showbar@gmail.com
 EMAIL_PASS=your-gmail-app-password
-EMAIL_FROM=your-dev-email@gmail.com
+EMAIL_FROM=cherrylips.showbar@gmail.com
 NODE_ENV=development
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
@@ -98,9 +98,9 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/cherry-lips?retryWrites=true&w=majority
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
-EMAIL_USER=your-production-email@gmail.com
+EMAIL_USER=cherrylips.showbar@gmail.com
 EMAIL_PASS=your-production-app-password
-EMAIL_FROM=your-production-email@gmail.com
+EMAIL_FROM=cherrylips.showbar@gmail.com
 NODE_ENV=production
 NEXT_PUBLIC_SITE_URL=https://yourdomain.com
 ```
@@ -112,9 +112,9 @@ NEXT_PUBLIC_SITE_URL=https://yourdomain.com
 MONGODB_URI=mongodb://mongo:27017/cherry-lips
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
-EMAIL_USER=your-email@gmail.com
+EMAIL_USER=cherrylips.showbar@gmail.com
 EMAIL_PASS=your-app-password
-EMAIL_FROM=your-email@gmail.com
+EMAIL_FROM=cherrylips.showbar@gmail.com
 NODE_ENV=production
 NEXT_PUBLIC_SITE_URL=https://yourdomain.com
 ```

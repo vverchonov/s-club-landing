@@ -125,7 +125,7 @@ export default function Contact() {
                   </svg>
                   <div>
                     <h5 className="text-xl mb-2">Email</h5>
-                    <p className="text-gray-400">cherrylips.club1@gmail.com</p>
+                    <p className="text-gray-400">cherrylips.showbar@gmail.com</p>
                   </div>
                 </div>
               </div>

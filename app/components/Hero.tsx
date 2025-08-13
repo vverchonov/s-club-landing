@@ -38,7 +38,7 @@ const Hero = () => {
       </div>
 
       {/* Contact Info Footer */}
-      <div className="absolute bottom-0 left-0 right-0 bg-black/80 text-white py-4 md:py-6">
+      <div className="absolute bottom-0 z-20 left-0 right-0 bg-black/80 text-white py-4 md:py-6">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             <div className="flex flex-col items-center p-2 md:text-left text-center">
@@ -72,7 +72,7 @@ const Hero = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
               <h3 className="text-red-500 font-medium mb-1 text-xs md:text-sm">ПОШТА</h3>
-              <Link target='_blank' href={"mailto:cherrylips.club1@gmail.com"} className="text-xs md:text-sm">cherrylips.club1@gmail.com</Link>
+              <Link target='_blank' href={"mailto:cherrylips.showbar@gmail.com"} className="text-xs md:text-sm">cherrylips.showbar@gmail.com</Link>
             </div>
           </div>
         </div>

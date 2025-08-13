@@ -40,6 +40,144 @@ const generateTimeOptions = () => {
 
 const validTimeOptions = generateTimeOptions();
 
+// Add a helper function to compare times considering day transition
+const compareTime = (time1: string, time2: string): number => {
+    const [hours1, minutes1] = time1.split(':').map(Number);
+    const [hours2, minutes2] = time2.split(':').map(Number);
+
+    // Convert to minutes from club opening (20:30)
+    // Times from 20:30-23:59 are same day, 00:00-02:00 are next day
+    const getMinutesFromClubOpen = (hours: number, minutes: number) => {
+        if (hours >= 20 || hours <= 2) {
+            // Same day: 20:30-23:59, Next day: 00:00-02:00
+            if (hours >= 20) {
+                return (hours - 20) * 60 + (minutes - 30);
+            } else {
+                // Next day (00:00-02:00), add 24 hours minus club opening time
+                return (24 - 20) * 60 - 30 + hours * 60 + minutes;
+            }
+        }
+        return -1; // Invalid time for club hours
+    };
+
+    const minutes1FromOpen = getMinutesFromClubOpen(hours1, minutes1);
+    const minutes2FromOpen = getMinutesFromClubOpen(hours2, minutes2);
+
+    return minutes1FromOpen - minutes2FromOpen;
+};
+
+// Helper function to check if time1 is before time2
+const isTimeBefore = (time1: string, time2: string): boolean => {
+    return compareTime(time1, time2) < 0;
+};
+
+// Helper function to check if time1 is after time2
+const isTimeAfter = (time1: string, time2: string): boolean => {
+    return compareTime(time1, time2) > 0;
+};
+
+// Update the getAvailableEndTimeOptions function
+const getAvailableEndTimeOptions = (startTime: string) => {
+    if (!selectedTable || !tableAvailability?.[selectedTable]) {
+        return validTimeOptions.filter(time => isTimeAfter(time, startTime));
+    }
+
+    const availableHours = tableAvailability[selectedTable].availableHours || validTimeOptions;
+
+    // Find the next booked time after the selected start time
+    const startIndex = validTimeOptions.indexOf(startTime);
+    let nextBookedIndex = validTimeOptions.length;
+
+    for (let i = startIndex + 1; i < validTimeOptions.length; i++) {
+        if (!availableHours.includes(validTimeOptions[i])) {
+            nextBookedIndex = i;
+            break;
+        }
+    }
+
+    // Return only times that are after start time and before next booked slot
+    return validTimeOptions.filter((time, index) => {
+        return isTimeAfter(time, startTime) && index < nextBookedIndex && availableHours.includes(time);
+    });
+};
+
+// Update the handleInputChange function
+const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+
+    if (name === 'date') {
+        // Deselect table when date changes
+        setSelectedTable(null);
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+
+        // Fetch table availability for the new date
+        fetchTableAvailability(value);
+    } else if (name === 'startTime') {
+        // Get available end time options based on selected start time
+        const availableEndTimes = getAvailableEndTimeOptions(value);
+
+        // Auto-adjust end time to be 2 hours after start time
+        const [hours, minutes] = value.split(':').map(Number);
+        let endHours = hours + 2;
+        const endMinutes = minutes;
+
+        // Handle overflow to next day (after midnight)
+        if (endHours >= 24) {
+            endHours = endHours - 24;
+        }
+
+        const calculatedEndTime = `${endHours.toString().padStart(2, '0')}:${endMinutes.toString().padStart(2, '0')}`;
+
+        // Find the best available end time
+        let bestEndTime;
+
+        if (availableEndTimes.length > 0) {
+            // If calculated end time (2 hours later) is available, use it
+            if (availableEndTimes.includes(calculatedEndTime)) {
+                bestEndTime = calculatedEndTime;
+            } else {
+                // Find the closest available time that's >= calculated end time
+                const timeAfterCalculated = availableEndTimes.find(time =>
+                    compareTime(time, calculatedEndTime) >= 0
+                );
+                if (timeAfterCalculated) {
+                    bestEndTime = timeAfterCalculated;
+                } else {
+                    // If no time >= calculated time, use the first available time after start
+                    bestEndTime = availableEndTimes[0];
+                }
+            }
+        } else {
+            // Fallback - find any time after start time
+            const timesAfterStart = validTimeOptions.filter(time => isTimeAfter(time, value));
+            bestEndTime = timesAfterStart[0] || value;
+        }
+
+        setFormData(prev => ({
+            ...prev,
+            startTime: value,
+            endTime: bestEndTime
+        }));
+    } else if (name === 'endTime') {
+        // Only update if the selected end time is valid
+        const availableEndTimes = getAvailableEndTimeOptions(formData.startTime);
+        if (availableEndTimes.includes(value) && isTimeAfter(value, formData.startTime)) {
+            setFormData(prev => ({
+                ...prev,
+                [name]: value
+            }));
+        }
+    } else {
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    }
+};
+
 export default function BookPage() {
     const [selectedTable, setSelectedTable] = useState<number | null>(null);
     const [formData, setFormData] = useState({
@@ -95,14 +233,15 @@ export default function BookPage() {
         fetchTableAvailability(formData.date);
     }, [formData.date, fetchTableAvailability]);
 
-    // Function to get available time options for selected table
-    const getAvailableTimeOptions = () => {
+    // Update the getAvailableTimeOptions function to handle start/end time filtering
+    const getAvailableStartTimeOptions = () => {
         if (!selectedTable || !tableAvailability?.[selectedTable]) {
             return validTimeOptions;
         }
         return tableAvailability[selectedTable].availableHours || validTimeOptions;
     };
 
+    // Function to get available time options for selected table
     const handleTableClick = (tableNumber: number) => {
         if (selectedTable === tableNumber) {
             // Deselect table
@@ -150,6 +289,7 @@ export default function BookPage() {
         }
     };
 
+    // Update the form validation
     const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -157,9 +297,23 @@ export default function BookPage() {
         const hasPhone = formData.phone.trim().length > 0;
         const hasTableSelected = selectedTable !== null;
         const isTableAvailable = selectedTable ? tableAvailability?.[selectedTable]?.available : false;
+        const isStartBeforeEnd = isTimeBefore(formData.startTime, formData.endTime);
 
-        if (!hasPhone || !hasTableSelected || !isTableAvailable) {
-            return; // Button should be disabled anyway, but extra safety
+        if (!hasPhone || !hasTableSelected || !isTableAvailable || !isStartBeforeEnd) {
+            // Show specific error for time validation
+            if (!isStartBeforeEnd) {
+                toast.error('Час початку повинен бути раніше часу закінчення', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
+            return;
         }
 
         setIsSubmitting(true); // Start loading
@@ -226,7 +380,7 @@ export default function BookPage() {
             }
         } catch (error) {
             console.error('Booking error:', error);
-            toast.error('Помилка при створенні бронювання', {
+            toast.error('Помилка мережі при створенні бронювання', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -238,55 +392,6 @@ export default function BookPage() {
             });
         } finally {
             setIsSubmitting(false); // Stop loading
-        }
-    };
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-
-        if (name === 'date') {
-            // Deselect table when date changes
-            setSelectedTable(null);
-            setFormData(prev => ({
-                ...prev,
-                [name]: value
-            }));
-
-            // Fetch table availability for the new date
-            fetchTableAvailability(value);
-        } else if (name === 'startTime') {
-            // Auto-adjust end time to be 2 hours after start time
-            const [hours, minutes] = value.split(':').map(Number);
-            let endHours = hours + 2;
-            const endMinutes = minutes;
-
-            // Handle overflow to next day (after midnight)
-            if (endHours >= 24) {
-                endHours = endHours - 24;
-            }
-
-            const endTime = `${endHours.toString().padStart(2, '0')}:${endMinutes.toString().padStart(2, '0')}`;
-
-            // Get available time options for selected table
-            const availableTimeOptions = getAvailableTimeOptions();
-
-            // Check if calculated end time is within available options, if not, find the closest available time
-            const calculatedEndTime = availableTimeOptions.includes(endTime) ? endTime :
-                availableTimeOptions.find((time: string) => {
-                    const [timeHours, timeMinutes] = time.split(':').map(Number);
-                    return timeHours > hours || (timeHours === hours && timeMinutes > minutes);
-                }) || availableTimeOptions[availableTimeOptions.length - 1];
-
-            setFormData(prev => ({
-                ...prev,
-                startTime: value,
-                endTime: calculatedEndTime
-            }));
-        } else {
-            setFormData(prev => ({
-                ...prev,
-                [name]: value
-            }));
         }
     };
 
@@ -439,6 +544,7 @@ export default function BookPage() {
                                     />
                                 </div>
 
+                                {/* Update the start time selector */}
                                 <div>
                                     <label htmlFor="startTime" className="block text-sm font-medium mb-2">
                                         Час початку
@@ -451,15 +557,26 @@ export default function BookPage() {
                                         className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-colors text-white"
                                         required
                                     >
-                                        {getAvailableTimeOptions().map((time: string) => (
-                                            <option key={time} value={time} className="bg-gray-900 text-white">
-                                                {time}
-                                            </option>
-                                        ))}
+                                        {validTimeOptions.map((time: string) => {
+                                            const availableStartTimes = getAvailableStartTimeOptions();
+                                            const isAvailable = availableStartTimes.includes(time);
+
+                                            return (
+                                                <option
+                                                    key={time}
+                                                    value={time}
+                                                    disabled={!isAvailable}
+                                                    className={`${isAvailable ? 'bg-gray-900 text-white' : 'bg-gray-700 text-gray-400'}`}
+                                                >
+                                                    {time} {!isAvailable ? '(заброньовано)' : ''}
+                                                </option>
+                                            );
+                                        })}
                                     </select>
                                     <p className="text-xs text-gray-400 mt-1">Клуб працює з 20:30 до 02:00</p>
                                 </div>
 
+                                {/* Update the end time selector */}
                                 <div>
                                     <label htmlFor="endTime" className="block text-sm font-medium mb-2">
                                         Час закінчення
@@ -472,13 +589,25 @@ export default function BookPage() {
                                         className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-colors text-white"
                                         required
                                     >
-                                        {getAvailableTimeOptions().map((time: string) => (
-                                            <option key={time} value={time} className="bg-gray-900 text-white">
-                                                {time}
-                                            </option>
-                                        ))}
+                                        {validTimeOptions
+                                            .filter(time => isTimeAfter(time, formData.startTime)) // Use proper time comparison
+                                            .map((time: string) => {
+                                                const availableEndTimes = getAvailableEndTimeOptions(formData.startTime);
+                                                const isAvailable = availableEndTimes.includes(time);
+
+                                                return (
+                                                    <option
+                                                        key={time}
+                                                        value={time}
+                                                        disabled={!isAvailable}
+                                                        className={`${isAvailable ? 'bg-gray-900 text-white' : 'bg-gray-700 text-gray-400'}`}
+                                                    >
+                                                        {time} {!isAvailable ? '(заброньовано)' : ''}
+                                                    </option>
+                                                );
+                                            })}
                                     </select>
-                                    <p className="text-xs text-gray-400 mt-1">Автоматично встановлюється на 2 години після початку</p>
+                                    <p className="text-xs text-gray-400 mt-1">Доступні часи до наступного бронювання</p>
                                 </div>
 
                                 <div className="text-center">
@@ -487,8 +616,9 @@ export default function BookPage() {
                                         const hasPhone = formData.phone.trim().length > 0;
                                         const hasTableSelected = selectedTable !== null;
                                         const isTableAvailable = selectedTable ? tableAvailability?.[selectedTable]?.available : false;
+                                        const isStartBeforeEnd = isTimeBefore(formData.startTime, formData.endTime);
 
-                                        const isDisabled = !hasPhone || !hasTableSelected || !isTableAvailable || isSubmitting;
+                                        const isDisabled = !hasPhone || !hasTableSelected || !isTableAvailable || !isStartBeforeEnd || isSubmitting;
 
                                         // Generate validation message
                                         let validationMessage = '';
@@ -498,6 +628,8 @@ export default function BookPage() {
                                             validationMessage = 'Оберіть столик';
                                         } else if (!isTableAvailable) {
                                             validationMessage = 'Обраний столик недоступний';
+                                        } else if (!isStartBeforeEnd) {
+                                            validationMessage = 'Час початку повинен бути раніше часу закінчення';
                                         }
 
                                         return (

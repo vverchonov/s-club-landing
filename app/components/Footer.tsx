@@ -16,8 +16,8 @@ const Footer = () => {
             </a>
           </p>
           <p className="mb-6">
-            <a href="mailto:cherrylips.club1@gmail.com" className="hover:text-red-500 transition-colors">
-              cherrylips.club1@gmail.com
+            <a href="mailto:cherrylips.showbar@gmail.com" className="hover:text-red-500 transition-colors">
+              cherrylips.showbar@gmail.com
             </a>
           </p>
           <div className="flex">
