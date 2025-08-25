@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Link from 'next/link'
 import FadeIn from './FadeIn'
 
 export default function Contact() {
@@ -95,7 +96,7 @@ export default function Contact() {
                   </svg>
                   <div>
                     <h5 className="text-xl mb-2">Адреса</h5>
-                    <p className="text-gray-400">вулиця Верховинська, 38, Ужгород, Закарпатська область</p>
+                    <Link target='_blank' href="https://www.google.com/maps/place/Verkhovyns'ka+St,+38,+Uzhhorod,+Zakarpats'ka+oblast,+Ukraine,+88000/@48.6483487,22.2682014,13.67z/data=!4m6!3m5!1s0x473918180c665683:0x7cb1ba0c90e95822!8m2!3d48.6454378!4d22.2748502!16s%2Fg%2F1vm_wnkz?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" className="text-gray-400 hover:text-red-500 transition-colors">вулиця Верховинська, 38, Ужгород, Закарпатська область</Link>
                   </div>
                 </div>
 
@@ -115,7 +116,7 @@ export default function Contact() {
                   </svg>
                   <div>
                     <h5 className="text-xl mb-2">Телефон</h5>
-                    <p className="text-gray-400">+380990111999</p>
+                    <Link href="tel:+380990111999" className="text-gray-400 hover:text-red-500 transition-colors">+380990111999</Link>
                   </div>
                 </div>
 
@@ -125,7 +126,7 @@ export default function Contact() {
                   </svg>
                   <div>
                     <h5 className="text-xl mb-2">Email</h5>
-                    <p className="text-gray-400">cherrylips.showbar@gmail.com</p>
+                    <Link href="mailto:cherrylips.showbar@gmail.com" className="text-gray-400 hover:text-red-500 transition-colors">cherrylips.showbar@gmail.com</Link>
                   </div>
                 </div>
               </div>
