@@ -90,7 +90,7 @@ const Welcome = () => {
             {/* Text Content */}
             <div>
               {/* <h2 className="text-red-500 text-xl mb-4 uppercase"></h2> */}
-              <h3 className="text-4xl md:text-5xl font-serif mb-8 uppercase">
+              <h3 className="text-4xl md:text-5xl font-serif mb-8 uppercase md:text-left text-center">
                 Чому обирають нас?
               </h3>
               <div className="space-y-6 text-gray-300">
