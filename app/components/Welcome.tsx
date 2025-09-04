@@ -31,21 +31,23 @@ const Welcome = () => {
           <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-32">
             {/* Text Content */}
             <div>
-              <h2 className="text-red-500 text-xl mb-4 uppercase">Cherry Lips showbar</h2>
-              <h3 className="text-4xl md:text-5xl font-serif mb-8 uppercase">
+              <h2 className="text-red-500 text-xl mb-4 uppercase md:text-left text-center">Cherry Lips showbar</h2>
+              <h3 className="text-4xl md:text-5xl font-serif mb-8 uppercase md:text-left text-center">
                 В САМОМУ СЕРЦІ Ужгорода
               </h3>
               <div className="space-y-6 text-gray-300">
-                <p>
+                <p className="text-lg">
                   Cherry Lips - це місце, де панує особлива, збудлива і загадкова атмосфера. У повітрі відчувається суміш адреналіну, азарту і передчуття. Гучна музика з глибокими басами, м&apos;яка напівтемрява, підсвічена неоновими вогнями, і запах дорогого алкоголю створюють обстановку, що розслабляє і збуджує одночасно.
                 </p>
               </div>
-              <Link
-                href="/book"
-                className="inline-block px-8 py-3 mt-8 text-lg font-medium bg-[#8B0000] hover:bg-[#660000] text-white transition-colors duration-300 rounded-full tracking-wider shadow-lg"
-              >
-                ЗАРЕЗЕРВУВАТИ
-              </Link>
+              <div className="text-center">
+                <Link
+                  href="/book"
+                  className="inline-block px-8 py-3 mt-8 text-lg font-medium bg-[#8B0000] hover:bg-[#660000] text-white transition-colors duration-300 rounded-full tracking-wider shadow-lg"
+                >
+                  ЗАРЕЗЕРВУВАТИ
+                </Link>
+              </div>
             </div>
 
             {/* Image */}
@@ -130,13 +132,16 @@ const Welcome = () => {
                     <span className="text-lg">Танцівниці - це поєднання краси, витонченості, грації та артистизму. З витонченими лініями тіла, плавними рухами наповнюють атмосферу клубу енергією спокушання.</span>
                   </li>
                 </ul>
+
               </div>
-              <Link
-                href="/book"
-                className="inline-block px-8 py-3 mt-8 text-lg font-medium bg-[#8B0000] hover:bg-[#660000] text-white transition-colors duration-300 rounded-full tracking-wider shadow-lg"
-              >
-                ЗАРЕЗЕРВУВАТИ
-              </Link>
+              <div className="text-center">
+                <Link
+                  href="/book"
+                  className="inline-block px-8 py-3 mt-8 text-lg font-medium bg-[#8B0000] hover:bg-[#660000] text-white transition-colors duration-300 rounded-full tracking-wider shadow-lg"
+                >
+                  ЗАРЕЗЕРВУВАТИ
+                </Link>
+              </div>
             </div>
           </div>
         </FadeIn>

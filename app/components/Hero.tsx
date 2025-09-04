@@ -21,11 +21,11 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
-        <div className="max-w-4xl mx-auto -mt-20">
+        <div className="max-w-4xl mx-auto -mt-30">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-white mb-6 tracking-wider uppercase">
             Cherry Lips
           </h1>
-          <p className="text-lg md:text-xl text-white/90 mb-8 font-light leading-relaxed">
+          <p className="text-lg md:text-xl text-white/90 mb-8 font-light leading-relaxed md:text-center text-left">
             Ласкаво просимо до Cherry Lips — місця, де стиль, пристрасть і розкішне дозвілля поєднуються в єдиному ритмі. На тебе чекають найкрасивіші дівчата, захопливі шоу-програми та атмосфера, яка допоможе забути про буденні турботи.
           </p>
           <Link

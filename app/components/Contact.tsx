@@ -74,7 +74,7 @@ export default function Contact() {
       <FadeIn>
         <div className="relative max-w-6xl mx-auto px-4">
           <h2 className="text-red-500 text-xl mb-4 text-center uppercase">contact us</h2>
-          <h3 className="text-4xl md:text-5xl font-serif mb-16 text-center">
+          <h3 className="text-4xl md:text-5xl font-serif mb-16 text-center uppercase">
             Звя&apos;жіться з нами
           </h3>
 
@@ -83,7 +83,7 @@ export default function Contact() {
             <div className="space-y-8">
               <div>
                 <h4 className="text-2xl font-serif mb-4">Контактна Інформація</h4>
-                <p className="text-gray-400 mb-8">
+                <p className="text-gray-400 mb-8 text-lg">
                   Зв&apos;яжіться з нами для бронювання або якщо у вас є запитання. Наш менеджер передзвонить вам найближчим часом для підтвердження бронювання.
                 </p>
               </div>

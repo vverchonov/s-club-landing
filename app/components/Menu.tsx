@@ -26,7 +26,15 @@ const Menu = () => {
                     sx={{ fontSize: 120 }}
                   />
                 </div>
-                <h3 className="text-3xl font-serif tracking-wider group-hover:text-red-500 transition-colors">МЕНЮ</h3>
+                <h3
+                  className="text-3xl font-serif tracking-wider group-hover:text-red-500 transition-colors animate-pulse-glow"
+                  style={{
+                    textShadow: '0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2)',
+                    animation: 'pulseGlow 2s ease-in-out infinite alternate'
+                  }}
+                >
+                  МЕНЮ
+                </h3>
               </div>
             </a>
 
@@ -57,7 +65,15 @@ const Menu = () => {
                     sx={{ fontSize: 120 }}
                   />
                 </div>
-                <h3 className="text-3xl font-serif tracking-wider group-hover:text-red-500 transition-colors">БАР</h3>
+                <h3
+                  className="text-3xl font-serif tracking-wider group-hover:text-red-500 transition-colors animate-pulse-glow"
+                  style={{
+                    textShadow: '0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2)',
+                    animation: 'pulseGlow 2s ease-in-out infinite alternate'
+                  }}
+                >
+                  БАР
+                </h3>
               </div>
             </a>
           </div>

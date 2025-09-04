@@ -24,7 +24,7 @@ const Footer = () => {
               cherrylips.showbar@gmail.com
             </a>
           </p>
-          <div className="flex">
+          <div className="flex justify-center">
             <Link
               href="https://www.google.com/maps/place/Verkhovyns'ka+St,+38,+Uzhhorod,+Zakarpats'ka+oblast,+Ukraine,+88000/@48.6454378,22.2722753,17z/data=!3m1!4b1!4m6!3m5!1s0x473918180c665683:0x7cb1ba0c90e95822!8m2!3d48.6454378!4d22.2748502!16s%2Fg%2F1vm_wnkz?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
               target="_blank"
