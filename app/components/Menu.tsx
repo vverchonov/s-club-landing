@@ -21,8 +21,14 @@ const Menu = () => {
               <div className="text-center space-y-4">
                 <div className="relative w-48 h-48 mx-auto flex items-center justify-center">
                   <RestaurantMenuIcon
-                    className="w-full h-full text-red-500 group-hover:text-red-400 transition-colors"
-                    sx={{ fontSize: 120 }}
+                    className="w-full h-full transition-all duration-300"
+                    sx={{
+                      fontSize: 120,
+                      filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%)',
+                      '&:hover': {
+                        filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(75%) contrast(97%)'
+                      }
+                    }}
                   />
                 </div>
                 <h3
