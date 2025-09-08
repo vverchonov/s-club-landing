@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import FadeIn from './FadeIn'
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu'
-import LocalBarIcon from '@mui/icons-material/LocalBar'
 
 const Menu = () => {
 
