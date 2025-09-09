@@ -2,15 +2,18 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import { useTranslation } from '../../lib/context/TranslationContext'
 
 const Hero = () => {
+  const { t } = useTranslation()
+
   return (
     <div id="home" className="relative h-[calc(100vh-7rem)]">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
           src="/hero.jpg"
-          alt="Cherry Lips Hero Background"
+          alt={t.hero.altText}
           fill
           className="object-cover"
           priority
@@ -23,16 +26,16 @@ const Hero = () => {
       <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
         <div className="max-w-4xl mx-auto -mt-30">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-white mb-6 tracking-wider uppercase">
-            Cherry Lips
+            {t.hero.title}
           </h1>
           <p className="text-lg md:text-xl text-white/90 mb-8 font-light leading-relaxed md:text-center text-left">
-            Ласкаво просимо до Cherry Lips — місця, де стиль, пристрасть і розкішне дозвілля поєднуються в єдиному ритмі. На тебе чекають найкрасивіші дівчата, захопливі шоу-програми та атмосфера, яка допоможе забути про буденні турботи.
+            {t.hero.description}
           </p>
           <Link
             href="/book"
             className="inline-block px-8 py-3 text-lg font-medium bg-[#8B0000] hover:bg-[#660000] text-white transition-colors duration-300 rounded-full tracking-wider shadow-lg"
           >
-            РЕЗЕРВУВАТИ СТОЛИК
+            {t.hero.reserveTable}
           </Link>
         </div>
       </div>
@@ -46,24 +49,24 @@ const Hero = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
-              <h3 className="text-red-500 font-medium mb-1 text-xs md:text-sm md:text-left text-center">АДРЕСА</h3>
-              <Link target='_blank' href="https://www.google.com/maps/place/Verkhovyns'ka+St,+38,+Uzhhorod,+Zakarpats'ka+oblast,+Ukraine,+88000/@48.6483487,22.2682014,13.67z/data=!4m6!3m5!1s0x473918180c665683:0x7cb1ba0c90e95822!8m2!3d48.6454378!4d22.2748502!16s%2Fg%2F1vm_wnkz?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" className="text-xs md:text-sm">вулиця Верховинська, 38</Link>
-              <Link target='_blank' href="https://www.google.com/maps/place/Verkhovyns'ka+St,+38,+Uzhhorod,+Zakarpats'ka+oblast,+Ukraine,+88000/@48.6483487,22.2682014,13.67z/data=!4m6!3m5!1s0x473918180c665683:0x7cb1ba0c90e95822!8m2!3d48.6454378!4d22.2748502!16s%2Fg%2F1vm_wnkz?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" className="text-xs md:text-sm">Ужгород, Закарпатська область</Link>
+              <h3 className="text-red-500 font-medium mb-1 text-xs md:text-sm md:text-left text-center">{t.hero.contactInfo.address}</h3>
+              <Link target='_blank' href="https://www.google.com/maps/place/Verkhovyns'ka+St,+38,+Uzhhorod,+Zakarpats'ka+oblast,+Ukraine,+88000/@48.6483487,22.2682014,13.67z/data=!4m6!3m5!1s0x473918180c665683:0x7cb1ba0c90e95822!8m2!3d48.6454378!4d22.2748502!16s%2Fg%2F1vm_wnkz?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" className="text-xs md:text-sm">{t.hero.contactInfo.addressLine1}</Link>
+              <Link target='_blank' href="https://www.google.com/maps/place/Verkhovyns'ka+St,+38,+Uzhhorod,+Zakarpats'ka+oblast,+Ukraine,+88000/@48.6483487,22.2682014,13.67z/data=!4m6!3m5!1s0x473918180c665683:0x7cb1ba0c90e95822!8m2!3d48.6454378!4d22.2748502!16s%2Fg%2F1vm_wnkz?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" className="text-xs md:text-sm">{t.hero.contactInfo.addressLine2}</Link>
             </div>
 
             <div className="flex flex-col items-center p-2">
               <svg className="w-5 h-5 text-red-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <h3 className="text-red-500 font-medium mb-1 text-xs md:text-sm">ГОДИНИ РОБОТИ</h3>
-              <p className="text-xs md:text-sm">Відкриття незабаром</p>
+              <h3 className="text-red-500 font-medium mb-1 text-xs md:text-sm">{t.hero.contactInfo.workingHours}</h3>
+              <p className="text-xs md:text-sm">{t.hero.contactInfo.openingSoon}</p>
             </div>
 
             <div className="flex flex-col items-center p-2">
               <svg className="w-5 h-5 text-red-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
-              <h3 className="text-red-500 font-medium mb-1 text-xs md:text-sm">ТЕЛЕФОН</h3>
+              <h3 className="text-red-500 font-medium mb-1 text-xs md:text-sm">{t.hero.contactInfo.phone}</h3>
               <Link target='_blank' href="tel:+38 (099) 011 1999" className="text-xs md:text-sm">+38 (099) 011 1999</Link>
             </div>
 
@@ -71,7 +74,7 @@ const Hero = () => {
               <svg className="w-5 h-5 text-red-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              <h3 className="text-red-500 font-medium mb-1 text-xs md:text-sm">ПОШТА</h3>
+              <h3 className="text-red-500 font-medium mb-1 text-xs md:text-sm">{t.hero.contactInfo.email}</h3>
               <Link target='_blank' href={"mailto:cherrylips.showbar@gmail.com"} className="text-xs md:text-sm">cherrylips.showbar@gmail.com</Link>
             </div>
           </div>

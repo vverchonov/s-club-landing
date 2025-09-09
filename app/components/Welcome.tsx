@@ -5,10 +5,12 @@ import Image from 'next/image'
 import FadeIn from './FadeIn'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
+import { useTranslation } from '../../lib/context/TranslationContext'
 
 const Welcome = () => {
   const firstImageRef = useRef(null)
   const secondImageRef = useRef(null)
+  const { t } = useTranslation()
   const { scrollYProgress } = useScroll({
     target: firstImageRef,
     offset: ["start end", "end start"]
@@ -31,13 +33,13 @@ const Welcome = () => {
           <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-32">
             {/* Text Content */}
             <div>
-              <h2 className="text-red-500 text-xl mb-4 uppercase md:text-left text-center">Cherry Lips showbar</h2>
+              <h2 className="text-red-500 text-xl mb-4 uppercase md:text-left text-center">{t.welcome.title}</h2>
               <h3 className="text-4xl md:text-5xl font-serif mb-8 uppercase md:text-left text-center">
-                В САМОМУ СЕРЦІ Ужгорода
+                {t.welcome.subtitle}
               </h3>
               <div className="space-y-6 text-gray-300">
                 <p className="text-lg">
-                  Cherry Lips - це місце, де панує особлива, збудлива і загадкова атмосфера. У повітрі відчувається суміш адреналіну, азарту і передчуття. Гучна музика з глибокими басами, м&apos;яка напівтемрява, підсвічена неоновими вогнями, і запах дорогого алкоголю створюють обстановку, що розслабляє і збуджує одночасно.
+                  {t.welcome.description}
                 </p>
               </div>
               <div className="text-center">
@@ -45,7 +47,7 @@ const Welcome = () => {
                   href="/book"
                   className="inline-block px-8 py-3 mt-8 text-lg font-medium bg-[#8B0000] hover:bg-[#660000] text-white transition-colors duration-300 rounded-full tracking-wider shadow-lg"
                 >
-                  ЗАРЕЗЕРВУВАТИ
+                  {t.welcome.reserveButton}
                 </Link>
               </div>
             </div>
@@ -89,9 +91,8 @@ const Welcome = () => {
 
             {/* Text Content */}
             <div>
-              {/* <h2 className="text-red-500 text-xl mb-4 uppercase"></h2> */}
               <h3 className="text-4xl md:text-5xl font-serif mb-8 uppercase md:text-left text-center">
-                Чому обирають нас?
+                {t.welcome.whyChooseUs}
               </h3>
               <div className="space-y-6 text-gray-300">
                 <ul className="space-y-6">
@@ -99,37 +100,37 @@ const Welcome = () => {
                     <svg className="w-6 h-6 text-red-500 mr-4 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-lg">Захопливі шоу - це поєднання пластики, пристрасті і мистецтво спокушання. Граціозні рухи, ефектні трюки на пілоні - все це заворожує і приковує погляд.</span>
+                    <span className="text-lg">{t.welcome.features.shows}</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="w-6 h-6 text-red-500 mr-4 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-lg">Приватні зони для відпочинку - незабутні емоції від розслаблення і насолоди до збудження.</span>
+                    <span className="text-lg">{t.welcome.features.privateZones}</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="w-6 h-6 text-red-500 mr-4 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-lg">Ексклюзивний бар - це завжди більше, ніж просто напої. Це емоції, люди, історії та настрій ночі.</span>
+                    <span className="text-lg">{t.welcome.features.exclusiveBar}</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="w-6 h-6 text-red-500 mr-4 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-lg">Димні кальяни - це особливий настрій розслаблення, легка ейфорія, неспішні бесіди. Можна забути про час, насолоджуючись димними клубами і неповторним шоу.</span>
+                    <span className="text-lg">{t.welcome.features.smokeyHookah}</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="w-6 h-6 text-red-500 mr-4 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-lg">Запальне караоке - це місце, де зливаються музика, емоції та енергія. У репертуарі сотні пісень: від класики до сучасних хітів.</span>
+                    <span className="text-lg">{t.welcome.features.karaoke}</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="w-6 h-6 text-red-500 mr-4 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-lg">Танцівниці - це поєднання краси, витонченості, грації та артистизму. З витонченими лініями тіла, плавними рухами наповнюють атмосферу клубу енергією спокушання.</span>
+                    <span className="text-lg">{t.welcome.features.dancers}</span>
                   </li>
                 </ul>
 
@@ -139,7 +140,7 @@ const Welcome = () => {
                   href="/book"
                   className="inline-block px-8 py-3 mt-8 text-lg font-medium bg-[#8B0000] hover:bg-[#660000] text-white transition-colors duration-300 rounded-full tracking-wider shadow-lg"
                 >
-                  ЗАРЕЗЕРВУВАТИ
+                  {t.welcome.reserveButton}
                 </Link>
               </div>
             </div>

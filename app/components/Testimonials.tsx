@@ -2,43 +2,29 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { useTranslation } from '../../lib/context/TranslationContext'
 
-const testimonials = [
-  {
-    text: "Неймовірна атмосфера та чарівні дівчата! Провів незабутній вечір у приємній компанії.",
-    author: "Богдан З."
-  },
-  {
-    text: "Найкраща атмосфера в місті! Професійний персонал та чудовий сервіс. Рекомендую всім.",
-    author: "Михайло К."
-  },
-  {
-    text: "Вишуканий відпочинок та преміальні напої. Ідеальне місце для особливого вечора.",
-    author: "Олександр М."
-  },
-  {
-    text: "Неперевершений відпочинок та розкішна атмосфера. Обов'язково повернусь знову!",
-    author: "Віктор П."
-  }
-]
 
 const Testimonials = () => {
+  const { t } = useTranslation()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
+  
+  const testimonials = t.testimonials.reviews
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setIsVisible(false) // Start fade out
       
       setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+        setCurrentIndex((prev) => (prev + 1) % t.testimonials.reviews.length)
         setIsVisible(true) // Start fade in
       }, 500) // Wait for fade out to complete
       
     }, 5000) // Change every 5 seconds
 
     return () => clearInterval(intervalId)
-  }, [])
+  }, [t.testimonials.reviews.length])
 
   return (
     <section id="testimonials" className="bg-black text-white py-24 w-full">
@@ -48,7 +34,7 @@ const Testimonials = () => {
           <div className="relative h-[400px] md:h-[500px] xl:h-[600px]  overflow-hidden">
             <Image
               src="/drink.jpg"
-              alt="Інтер'єр бару"
+              alt={t.testimonials.barInteriorAlt}
               fill
               className="object-cover"
               priority
@@ -71,7 +57,7 @@ const Testimonials = () => {
                 </div>
               </div>
               <h2 className="text-3xl md:text-4xl xl:text-5xl font-serif mb-2">
-                ВІДГУКИ НАШИХ<br />ГОСТЕЙ
+                {t.testimonials.title}
               </h2>
             </div>
           </div>
@@ -91,7 +77,7 @@ const Testimonials = () => {
               </p>
             </div>
             <div className="flex gap-2 mt-8">
-              {testimonials.map((_, index) => (
+              {t.testimonials.reviews.map((_, index) => (
                 <button
                   key={index}
                   className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-colors duration-300 ${

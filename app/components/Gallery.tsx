@@ -4,6 +4,7 @@ import Image from 'next/image'
 import FadeIn from './FadeIn'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { useTranslation } from '../../lib/context/TranslationContext'
 
 const useMediaQuery = (query: string) => {
   const [matches, setMatches] = useState(false)
@@ -22,6 +23,7 @@ const useMediaQuery = (query: string) => {
 }
 
 const Gallery = () => {
+  const { t } = useTranslation()
   const isMobile = useMediaQuery('(max-width: 640px)')
   const allImages = [
     '/gallery/1.jpg',
@@ -55,10 +57,9 @@ const Gallery = () => {
 
       <FadeIn>
         <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <h2 className="text-red-500 text-xl mb-4 text-center uppercase">АТМОСФЕРА Cherry Lips showbar</h2>
+          <h2 className="text-red-500 text-xl mb-4 text-center uppercase">{t.gallery.title}</h2>
           <h3 className="text-4xl md:text-5xl font-serif mb-16 text-center">
-            ЕКСКЛЮЗИВНА АТМОСФЕРА <br />
-            ЕЛЕГАНТНОСТІ & ЕРОТИКИ
+            {t.gallery.subtitle}
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -66,7 +67,7 @@ const Gallery = () => {
               <div key={index} className="aspect-[3/4] relative overflow-hidden group">
                 <Image
                   src={image}
-                  alt={`Gallery image ${index + 1}`}
+                  alt={t.gallery.imageAlt}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                   sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
@@ -82,7 +83,7 @@ const Gallery = () => {
               href="/book"
               className="inline-block px-12 py-4 text-xl font-medium bg-[#8B0000] hover:bg-[#660000] text-white transition-colors duration-300 rounded-full tracking-wider shadow-lg"
             >
-              РЕЗЕРВУВАТИ СТОЛИК
+              {t.gallery.reserveTable}
             </Link>
           </div>
         </div>

@@ -3,8 +3,14 @@
 import Image from 'next/image'
 import FadeIn from './FadeIn'
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu'
+import { useTranslation } from '../../lib/context/TranslationContext'
 
 const Menu = () => {
+  const { t, locale } = useTranslation()
+
+  // Generate menu URLs based on current language
+  const menuUrl = locale === 'en' ? '/menu-eng.pdf' : '/menu.pdf'
+  const crazyMenuUrl = locale === 'en' ? '/crazy-eng.pdf' : '/crazy.pdf'
 
   return (
     <section id="menu" className="relative bg-black text-white py-24">
@@ -13,7 +19,7 @@ const Menu = () => {
           <div className="grid md:grid-cols-3 gap-12 items-center">
             {/* Food Section */}
             <a
-              href="/menu.pdf"
+              href={menuUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="group"
@@ -38,7 +44,7 @@ const Menu = () => {
                     animation: 'pulseGlow 2s ease-in-out infinite alternate'
                   }}
                 >
-                  МЕНЮ
+                  {t.menu.title}
                 </h3>
               </div>
             </a>
@@ -48,7 +54,7 @@ const Menu = () => {
               <div className="relative w-52 h-52">
                 <Image
                   src="/logo.png"
-                  alt="Cherry Lips Logo"
+                  alt={t.menu.logoAlt}
                   fill
                   className="object-contain"
                   priority
@@ -58,7 +64,7 @@ const Menu = () => {
 
             {/* Bar Section */}
             <a
-              href="/crazy.pdf"
+              href={crazyMenuUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="group"
@@ -67,7 +73,7 @@ const Menu = () => {
                 <div className="relative w-48 h-48 mx-auto flex items-center justify-center">
                   <Image
                     src="/sexy.svg"
-                    alt="Menu Icon"
+                    alt={t.menu.menuIconAlt}
                     width={10}
                     height={10}
                     className="w-full h-full filter brightness-0 saturate-100 group-hover:brightness-75 transition-all duration-300"
@@ -83,7 +89,7 @@ const Menu = () => {
                     animation: 'pulseGlow 2s ease-in-out infinite alternate'
                   }}
                 >
-                  CRAZY МЕНЮ
+                  {t.menu.crazyMenu}
                 </h3>
               </div>
             </a>

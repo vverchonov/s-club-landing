@@ -1,10 +1,26 @@
 import type { Metadata } from 'next'
 import Vacancies from '../components/Vacancies'
+import { translations } from '../../lib/translations'
+import { getBestLocaleForUser } from '../../lib/utils/localeDetection'
 
-export const metadata: Metadata = {
-  title: 'Вакансії | Cherry Lips showbar - Нічний cтриптиз клуб в Ужгороді',
-  description: 'Приєднуйтесь до команди найкращого нічного клубу Ужгорода. Відкриті вакансії: танцівниці, бармени, хостес, офіціанти.',
-  keywords: ['вакансії', 'робота в клубі', 'нічний клуб', 'Київ', 'танцівниці', 'бармени', 'хостес'],
+// Generate dynamic metadata based on user locale
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = getBestLocaleForUser();
+  const t = translations[locale];
+  
+  return {
+    title: t.meta.vacanciesTitle,
+    description: t.meta.vacanciesDescription,
+    openGraph: {
+      title: t.meta.vacanciesTitle,
+      description: t.meta.vacanciesDescription,
+      locale: locale === 'uk' ? 'uk_UA' : 'en_US',
+    },
+    twitter: {
+      title: t.meta.vacanciesTitle,
+      description: t.meta.vacanciesDescription,
+    },
+  };
 }
 
 export default function VacanciesPage() {

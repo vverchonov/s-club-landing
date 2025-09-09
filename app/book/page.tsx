@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useTranslation } from '../../lib/context/TranslationContext';
 
 // Club operating hours (20:30 - 02:00) - used in generateTimeOptions
 // const CLUB_OPEN_HOUR = 20;
@@ -82,6 +83,8 @@ const isTimeAfter = (time1: string, time2: string): boolean => {
 
 
 export default function BookPage() {
+    const { t, isInitialized } = useTranslation();
+    const [hasMounted, setHasMounted] = useState(false);
     const [selectedTable, setSelectedTable] = useState<number | null>(null);
     const [formData, setFormData] = useState({
         name: '',
@@ -97,6 +100,10 @@ export default function BookPage() {
     const [reservationData, setReservationData] = useState<{ tableNumber: number; name: string; phone: string; date: string; startTime: string; endTime: string; reservationId: string; createdAt: string } | null>(null);
     // Add a new state for form submission loading
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    useEffect(() => {
+        setHasMounted(true);
+    }, []);
 
     // Function to validate date format
     const isValidDate = useCallback((dateString: string): boolean => {
@@ -307,7 +314,7 @@ export default function BookPage() {
         if (!hasPhone || !hasTableSelected || !isTableAvailable || !isStartBeforeEnd) {
             // Show specific error for time validation
             if (!isStartBeforeEnd) {
-                toast.error('Час початку повинен бути раніше часу закінчення', {
+                toast.error(t.booking.errors.timeValidation, {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -336,7 +343,7 @@ export default function BookPage() {
                     date: formData.date,
                     startTime: formData.startTime,
                     endTime: formData.endTime,
-                    description: `Бронювання столика ${selectedTable} для ${formData.name} (${formData.phone}) на ${formData.date} з ${formData.startTime} до ${formData.endTime}`
+                    description: `Table ${selectedTable} booking for ${formData.name} (${formData.phone}) on ${formData.date} from ${formData.startTime} to ${formData.endTime}`
                 }),
             });
 
@@ -372,7 +379,7 @@ export default function BookPage() {
                 await fetchTableAvailability(formData.date);
 
             } else {
-                toast.error(data.error || 'Помилка при створенні бронювання', {
+                toast.error(data.error || t.booking.errors.bookingError, {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -385,7 +392,7 @@ export default function BookPage() {
             }
         } catch (error) {
             console.error('Booking error:', error);
-            toast.error('Помилка мережі при створенні бронювання', {
+            toast.error(t.booking.errors.networkError, {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -400,6 +407,21 @@ export default function BookPage() {
         }
     };
 
+    // Show loading screen until component has mounted and translations are loaded
+    if (!hasMounted || !isInitialized) {
+        return (
+            <section className="relative bg-black text-white min-h-screen flex items-center justify-center">
+                <div className="text-center">
+                    <div className="relative w-16 h-16 mx-auto mb-4">
+                        <div className="absolute top-0 left-0 w-full h-full border-4 border-white/20 rounded-full"></div>
+                        <div className="absolute top-0 left-0 w-full h-full border-4 border-transparent border-t-red-500 rounded-full animate-spin"></div>
+                    </div>
+                    <p className="text-white text-lg">Cherry Lips</p>
+                </div>
+            </section>
+        );
+    }
+
     return (
         <section className="relative bg-black text-white py-24 pt-2 overflow-hidden">
             <ToastContainer />
@@ -410,16 +432,16 @@ export default function BookPage() {
             </div>
 
             <div className="relative max-w-6xl mx-auto px-4">
-                <h2 className="text-red-500 text-xl mb-4 text-center uppercase">Бронювання</h2>
+                <h2 className="text-red-500 text-xl mb-4 text-center uppercase">{t.booking.title}</h2>
                 <h3 className="text-4xl md:text-5xl font-serif mb-16 text-center">
-                    ЗАБРОНЮВАТИ СТОЛИК
+                    {t.booking.subtitle}
                 </h3>
 
                 <div className="bg-white/5 p-8 rounded-lg backdrop-blur-sm shadow-xl">
                     <div className="grid md:grid-cols-2 gap-12">
                         {/* Table Selection */}
                         <div>
-                            <h4 className="text-2xl font-serif mb-6">Оберіть Столик</h4>
+                            <h4 className="text-2xl font-serif mb-6">{t.booking.selectTable}</h4>
 
                             {loading ? (
                                 <div className="flex flex-col items-center justify-center py-12">
@@ -428,7 +450,7 @@ export default function BookPage() {
                                         <div className="absolute top-0 left-0 w-full h-full border-4 border-white/20 rounded-full"></div>
                                         <div className="absolute top-0 left-0 w-full h-full border-4 border-transparent border-t-red-500 rounded-full animate-spin"></div>
                                     </div>
-                                    <p className="text-gray-400 text-center">Завантаження доступності столиків...</p>
+                                    <p className="text-gray-400 text-center">{t.booking.loading}</p>
                                 </div>
                             ) : error ? (
                                 <div className="text-center py-8">
@@ -437,7 +459,7 @@ export default function BookPage() {
                                         onClick={() => fetchTableAvailability(formData.date)}
                                         className="text-red-500 hover:text-red-400 text-sm underline"
                                     >
-                                        Спробувати знову
+                                        {t.booking.tryAgain}
                                     </button>
                                 </div>
                             ) : (
@@ -463,7 +485,7 @@ export default function BookPage() {
                                                                 : 'border-white/20 bg-white/10 hover:border-red-500 hover:bg-white/20 cursor-pointer'
                                                         }
                                                     `}
-                                                    title={isFullyBooked ? `Столик ${tableNumber} повністю заброньований на цю дату` : `Обрати столик ${tableNumber}`}
+                                                    title={isFullyBooked ? t.booking.fullyBooked.replace('{number}', tableNumber.toString()) : `${t.booking.selectTable} ${tableNumber}`}
                                                 >
                                                     <span className={`font-semibold ${isSelected ? 'text-red-500' : 'text-white'}`}>
                                                         {tableNumber}
@@ -476,7 +498,7 @@ export default function BookPage() {
                                                     {/* Hover tooltip for fully booked tables */}
                                                     {isFullyBooked && (
                                                         <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black/90 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10">
-                                                            Повністю заброньований
+                                                            {t.booking.fullyBookedShort}
                                                             <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black/90"></div>
                                                         </div>
                                                     )}
@@ -487,11 +509,11 @@ export default function BookPage() {
 
                                     {selectedTable ? (
                                         <p className="text-red-500 font-medium text-center">
-                                            ✓ Столик {selectedTable} обрано
+                                            {t.booking.tableSelected.replace('{number}', selectedTable.toString())}
                                         </p>
                                     ) : (
                                         <p className="text-gray-400 text-center text-sm">
-                                            Оберіть столик для бронювання
+                                            {t.booking.selectTablePrompt}
                                         </p>
                                     )}
                                 </>
@@ -500,11 +522,11 @@ export default function BookPage() {
 
                         {/* Booking Form */}
                         <div>
-                            <h4 className="text-2xl font-serif mb-6">Деталі Бронювання</h4>
+                            <h4 className="text-2xl font-serif mb-6">{t.booking.bookingDetails}</h4>
                             <form onSubmit={handleFormSubmit} className="space-y-6">
                                 <div>
                                     <label htmlFor="name" className="block text-sm font-medium mb-2">
-                                        Ім&apos;я
+                                        {t.booking.form.name}
                                     </label>
                                     <input
                                         type="text"
@@ -513,14 +535,14 @@ export default function BookPage() {
                                         value={formData.name}
                                         onChange={handleInputChange}
                                         className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-colors text-white"
-                                        placeholder="Ваше ім'я"
+                                        placeholder={t.booking.form.namePlaceholder}
                                         required
                                     />
                                 </div>
 
                                 <div>
                                     <label htmlFor="phone" className="block text-sm font-medium mb-2">
-                                        Телефон *
+                                        {t.booking.form.phone}
                                     </label>
                                     <input
                                         type="tel"
@@ -529,14 +551,14 @@ export default function BookPage() {
                                         value={formData.phone}
                                         onChange={handleInputChange}
                                         className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-colors text-white"
-                                        placeholder="+380"
+                                        placeholder={t.booking.form.phonePlaceholder}
                                         required
                                     />
                                 </div>
 
                                 <div>
                                     <label htmlFor="date" className="block text-sm font-medium mb-2">
-                                        День бронювання
+                                        {t.booking.form.date}
                                     </label>
                                     <input
                                         type="date"
@@ -552,7 +574,7 @@ export default function BookPage() {
                                 {/* Update the start time selector */}
                                 <div>
                                     <label htmlFor="startTime" className="block text-sm font-medium mb-2">
-                                        Час початку
+                                        {t.booking.form.startTime}
                                     </label>
                                     <select
                                         id="startTime"
@@ -573,18 +595,18 @@ export default function BookPage() {
                                                     disabled={!isAvailable}
                                                     className={`${isAvailable ? 'bg-gray-900 text-white' : 'bg-gray-700 text-gray-400'}`}
                                                 >
-                                                    {time} {!isAvailable ? '(заброньовано)' : ''}
+                                                    {time} {!isAvailable ? ` ${t.booking.form.booked}` : ''}
                                                 </option>
                                             );
                                         })}
                                     </select>
-                                    <p className="text-xs text-gray-400 mt-1">Клуб працює з 20:30 до 02:00</p>
+                                    <p className="text-xs text-gray-400 mt-1">{t.booking.form.workingHours}</p>
                                 </div>
 
                                 {/* Update the end time selector */}
                                 <div>
                                     <label htmlFor="endTime" className="block text-sm font-medium mb-2">
-                                        Час закінчення
+                                        {t.booking.form.endTime}
                                     </label>
                                     <select
                                         id="endTime"
@@ -607,12 +629,12 @@ export default function BookPage() {
                                                         disabled={!isAvailable}
                                                         className={`${isAvailable ? 'bg-gray-900 text-white' : 'bg-gray-700 text-gray-400'}`}
                                                     >
-                                                        {time} {!isAvailable ? '(заброньовано)' : ''}
+                                                        {time} {!isAvailable ? ` ${t.booking.form.booked}` : ''}
                                                     </option>
                                                 );
                                             })}
                                     </select>
-                                    <p className="text-xs text-gray-400 mt-1">Доступні часи до наступного бронювання</p>
+                                    <p className="text-xs text-gray-400 mt-1">{t.booking.form.availableUntilNext}</p>
                                 </div>
 
                                 <div className="text-center">
@@ -628,13 +650,13 @@ export default function BookPage() {
                                         // Generate validation message
                                         let validationMessage = '';
                                         if (!hasPhone) {
-                                            validationMessage = 'Введіть номер телефону';
+                                            validationMessage = t.booking.form.validation.enterPhone;
                                         } else if (!hasTableSelected) {
-                                            validationMessage = 'Оберіть столик';
+                                            validationMessage = t.booking.form.validation.selectTable;
                                         } else if (!isTableAvailable) {
-                                            validationMessage = 'Обраний столик недоступний';
+                                            validationMessage = t.booking.form.validation.tableUnavailable;
                                         } else if (!isStartBeforeEnd) {
-                                            validationMessage = 'Час початку повинен бути раніше часу закінчення';
+                                            validationMessage = t.booking.form.validation.timeError;
                                         }
 
                                         return (
@@ -651,10 +673,10 @@ export default function BookPage() {
                                                         <>
                                                             {/* Loading Spinner */}
                                                             <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                                                            <span>Створення...</span>
+                                                            <span>{t.booking.form.creating}</span>
                                                         </>
                                                     ) : (
-                                                        <span>ЗАБРОНЮВАТИ</span>
+                                                        <span>{t.booking.form.book}</span>
                                                     )}
                                                 </button>
 
@@ -690,42 +712,42 @@ export default function BookPage() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                 </svg>
                             </div>
-                            <h3 className="text-3xl font-serif text-white mb-3 tracking-wider">Дякуємо за бронювання!</h3>
-                            <p className="text-gray-300 text-lg">Наш персонал зв&apos;яжеться з вами найближчим часом для підтвердження.</p>
+                            <h3 className="text-3xl font-serif text-white mb-3 tracking-wider">{t.booking.modal.title}</h3>
+                            <p className="text-gray-300 text-lg">{t.booking.modal.subtitle}</p>
                         </div>
 
                         {/* Reservation Details */}
                         <div className="bg-white/10 border border-white/20 rounded-lg p-6 mb-6">
-                            <h4 className="text-xl font-serif text-white mb-6 text-center">Деталі бронювання</h4>
+                            <h4 className="text-xl font-serif text-white mb-6 text-center">{t.booking.modal.details}</h4>
                             <div className="space-y-4">
                                 <div className="flex justify-between items-center py-2 border-b border-white/10">
-                                    <span className="text-gray-300">Столик:</span>
+                                    <span className="text-gray-300">{t.booking.modal.table}</span>
                                     <span className="text-white font-medium text-lg">№{reservationData.tableNumber}</span>
                                 </div>
                                 <div className="flex justify-between items-center py-2 border-b border-white/10">
-                                    <span className="text-gray-300">Ім&apos;я:</span>
+                                    <span className="text-gray-300">{t.booking.modal.name}</span>
                                     <span className="text-white font-medium">{reservationData.name}</span>
                                 </div>
                                 <div className="flex justify-between items-center py-2 border-b border-white/10">
-                                    <span className="text-gray-300">Телефон:</span>
+                                    <span className="text-gray-300">{t.booking.modal.phone}</span>
                                     <span className="text-white font-medium">{reservationData.phone}</span>
                                 </div>
                                 <div className="flex justify-between items-center py-2 border-b border-white/10">
-                                    <span className="text-gray-300">Дата:</span>
+                                    <span className="text-gray-300">{t.booking.modal.date}</span>
                                     <span className="text-white font-medium">{reservationData.date}</span>
                                 </div>
                                 <div className="flex justify-between items-center py-2 border-b border-white/10">
-                                    <span className="text-gray-300">Час:</span>
+                                    <span className="text-gray-300">{t.booking.modal.time}</span>
                                     <span className="text-white font-medium">{reservationData.startTime} - {reservationData.endTime}</span>
                                 </div>
                                 {reservationData.reservationId !== 'N/A' && (
                                     <div className="flex justify-between items-center py-2 border-b border-white/10">
-                                        <span className="text-gray-300">ID бронювання:</span>
+                                        <span className="text-gray-300">{t.booking.modal.reservationId}</span>
                                         <span className="text-white font-medium text-sm">{reservationData.reservationId}</span>
                                     </div>
                                 )}
                                 <div className="flex justify-between items-center py-2">
-                                    <span className="text-gray-300">Створено:</span>
+                                    <span className="text-gray-300">{t.booking.modal.created}</span>
                                     <span className="text-white font-medium text-sm">{reservationData.createdAt}</span>
                                 </div>
                             </div>
@@ -741,7 +763,7 @@ export default function BookPage() {
                                 </div>
                                 <div>
                                     <p className="text-white font-medium text-lg">+38 (099) 011 1999</p>
-                                    <p className="text-gray-300 text-sm">Для питань та змін</p>
+                                    <p className="text-gray-300 text-sm">{t.booking.modal.contactForChanges}</p>
                                 </div>
                             </div>
                         </div>
@@ -752,7 +774,7 @@ export default function BookPage() {
                                 onClick={() => setShowSuccessModal(false)}
                                 className="px-8 py-3 bg-[#8B0000] hover:bg-[#660000] text-white rounded-full text-lg font-medium tracking-wider shadow-lg transition-colors duration-300"
                             >
-                                Закрити
+                                {t.booking.modal.close}
                             </button>
                         </div>
                     </div>

@@ -5,9 +5,11 @@ import './globals.css'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
+import { TranslationProvider } from '../lib/context/TranslationContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
+// Default metadata (fallback)
 export const metadata: Metadata = {
   title: 'Cherry Lips showbar',
   description: 'Ексклюзивний Нічний клуб, Стриптиз клуб та Кабаре в Ужгороді',
@@ -75,12 +77,14 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={inter.className}>
-        <Navigation />
-        <main className="pt-28">
-          {children}
-        </main>
-        <Footer />
-        <ScrollToTop />
+        <TranslationProvider>
+          <Navigation />
+          <main className="pt-28">
+            {children}
+          </main>
+          <Footer />
+          <ScrollToTop />
+        </TranslationProvider>
       </body>
     </html>
   )

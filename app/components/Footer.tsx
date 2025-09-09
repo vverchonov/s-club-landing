@@ -1,17 +1,20 @@
 'use client'
 
 import Link from 'next/link'
+import { useTranslation } from '../../lib/context/TranslationContext'
 
 const Footer = () => {
+  const { t } = useTranslation()
+  
   return (
     <footer className="bg-black text-white pt-16 pb-8">
       <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12">
         {/* Contact Info */}
         <div>
-          <h3 className="text-red-500 text-xl mb-6">Cherry Lips showbar Ужгород</h3>
+          <h3 className="text-red-500 text-xl mb-6">{t.footer.title}</h3>
           <p className="mb-2">
             <Link href="https://www.google.com/maps/place/Verkhovyns'ka+St,+38,+Uzhhorod,+Zakarpats'ka+oblast,+Ukraine,+88000/@48.6454378,22.2722753,17z/data=!3m1!4b1!4m6!3m5!1s0x473918180c665683:0x7cb1ba0c90e95822!8m2!3d48.6454378!4d22.2748502!16s%2Fg%2F1vm_wnkz?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" target="_blank" className="hover:text-red-500 transition-colors">
-              вулиця Верховинська, 38, Ужгород, Закарпатська область
+              {t.hero.contactInfo.addressLine1}, {t.hero.contactInfo.addressLine2}
             </Link>
           </p>
           <p className="mb-4">
@@ -30,17 +33,17 @@ const Footer = () => {
               target="_blank"
               className="inline-flex items-center justify-center h-12 px-8 text-sm font-medium bg-[#8B0000] hover:bg-[#660000] text-white transition-colors duration-300 rounded-full tracking-wider shadow-lg"
             >
-              ПРОКЛАСТИ МАРШРУТ
+              {t.footer.getDirections}
             </Link>
           </div>
         </div>
 
         {/* Opening Hours */}
         <div>
-          <h3 className="text-red-500 text-xl mb-6">Години Роботи</h3>
+          <h3 className="text-red-500 text-xl mb-6">{t.footer.hours}</h3>
           <div className="space-y-2">
             <div className="flex justify-between">
-              <span>Відкриття незабаром</span>
+              <span>{t.footer.openingSoon}</span>
             </div>
           </div>
         </div>
@@ -78,25 +81,25 @@ const Footer = () => {
 
         {/* Sitemap & Social */}
         <div>
-          <h3 className="text-red-500 text-xl mb-6">Карта Сайту</h3>
+          <h3 className="text-red-500 text-xl mb-6">{t.footer.sitemap}</h3>
           <ul className="space-y-2 mb-8">
             <li>
-              <Link href="#home" className="hover:text-red-500 transition-colors">Головна</Link>
+              <Link href="#home" className="hover:text-red-500 transition-colors">{t.footer.sitemapItems.home}</Link>
             </li>
             <li>
-              <Link href="#club" className="hover:text-red-500 transition-colors">Клуб</Link>
+              <Link href="#club" className="hover:text-red-500 transition-colors">{t.footer.sitemapItems.club}</Link>
             </li>
             <li>
-              <Link href="#menu" className="hover:text-red-500 transition-colors">Послуги</Link>
+              <Link href="#menu" className="hover:text-red-500 transition-colors">{t.footer.sitemapItems.services}</Link>
             </li>
             <li>
-              <Link href="/vacancies" className="hover:text-red-500 transition-colors">Вакансії</Link>
+              <Link href="/vacancies" className="hover:text-red-500 transition-colors">{t.footer.sitemapItems.vacancies}</Link>
             </li>
             {/* <li>
-              <Link href="#news" className="hover:text-red-500 transition-colors">Новини</Link>
+              <Link href="#news" className="hover:text-red-500 transition-colors">{t.footer.sitemapItems.news}</Link>
             </li> */}
             <li>
-              <Link href="/book" className="hover:text-red-500 transition-colors">Бронювання</Link>
+              <Link href="/book" className="hover:text-red-500 transition-colors">{t.footer.sitemapItems.booking}</Link>
             </li>
           </ul>
 
@@ -129,15 +132,15 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto px-4 mt-16 pt-8 border-t border-gray-800">
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
           <div className="mb-4 md:mb-0">
-            © 2024 Cherry Lips showbar Ужгород
+            {t.footer.copyright}
           </div>
           <div className="flex space-x-4">
             <Link href="/imprint" className="hover:text-white transition-colors">
-              Правова інформація
+              {t.footer.legal}
             </Link>
             <span>|</span>
             <Link href="/privacy" className="hover:text-white transition-colors">
-              Конфіденційність
+              {t.footer.privacy}
             </Link>
           </div>
         </div>

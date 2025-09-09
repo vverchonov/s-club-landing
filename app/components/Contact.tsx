@@ -5,8 +5,10 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Link from 'next/link'
 import FadeIn from './FadeIn'
+import { useTranslation } from '../../lib/context/TranslationContext'
 
 export default function Contact() {
+  const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -23,7 +25,7 @@ export default function Contact() {
       const data = await response.json()
 
       if (response.ok) {
-        toast.success('Повідомлення успішно надіслано', {
+        toast.success(t.contact.form.success, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -35,7 +37,7 @@ export default function Contact() {
         });
         (e.target as HTMLFormElement).reset()
       } else {
-        toast.error(data.error || 'Помилка при відправці повідомлення', {
+        toast.error(data.error || t.contact.form.error, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -47,7 +49,7 @@ export default function Contact() {
         })
       }
     } catch {
-      toast.error('Помилка при відправці повідомлення', {
+      toast.error(t.contact.form.error, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -73,7 +75,7 @@ export default function Contact() {
 
       <FadeIn>
         <div className="relative max-w-6xl mx-auto px-4">
-          <h2 className="text-red-500 text-xl mb-4 text-center uppercase">contact us</h2>
+          <h2 className="text-red-500 text-xl mb-4 text-center uppercase">{t.contact.title}</h2>
           <h3 className="text-4xl md:text-5xl font-serif mb-16 text-center uppercase">
             Звя&apos;жіться з нами
           </h3>
@@ -82,9 +84,9 @@ export default function Contact() {
             {/* Contact Info */}
             <div className="space-y-8">
               <div>
-                <h4 className="text-2xl font-serif mb-4">Контактна Інформація</h4>
+                <h4 className="text-2xl font-serif mb-4">{t.contact.contactInfo}</h4>
                 <p className="text-gray-400 mb-8 text-lg">
-                  Зв&apos;яжіться з нами для бронювання або якщо у вас є запитання. Наш менеджер передзвонить вам найближчим часом для підтвердження бронювання.
+                  {t.contact.description}
                 </p>
               </div>
 
@@ -95,8 +97,8 @@ export default function Contact() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                   <div>
-                    <h5 className="text-xl mb-2">Адреса</h5>
-                    <Link target='_blank' href="https://www.google.com/maps/place/Verkhovyns'ka+St,+38,+Uzhhorod,+Zakarpats'ka+oblast,+Ukraine,+88000/@48.6483487,22.2682014,13.67z/data=!4m6!3m5!1s0x473918180c665683:0x7cb1ba0c90e95822!8m2!3d48.6454378!4d22.2748502!16s%2Fg%2F1vm_wnkz?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" className="text-gray-400 hover:text-red-500 transition-colors">вулиця Верховинська, 38, Ужгород, Закарпатська область</Link>
+                    <h5 className="text-xl mb-2">{t.contact.address}</h5>
+                    <Link target='_blank' href="https://www.google.com/maps/place/Verkhovyns'ka+St,+38,+Uzhhorod,+Zakarpats'ka+oblast,+Ukraine,+88000/@48.6483487,22.2682014,13.67z/data=!4m6!3m5!1s0x473918180c665683:0x7cb1ba0c90e95822!8m2!3d48.6454378!4d22.2748502!16s%2Fg%2F1vm_wnkz?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D" className="text-gray-400 hover:text-red-500 transition-colors">{t.hero.contactInfo.addressLine1}, {t.hero.contactInfo.addressLine2}</Link>
                   </div>
                 </div>
 
@@ -105,8 +107,8 @@ export default function Contact() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <div>
-                    <h5 className="text-xl mb-2">Години Роботи</h5>
-                    <p className="text-gray-400">Відкриття незабаром</p>
+                    <h5 className="text-xl mb-2">{t.contact.workingHours}</h5>
+                    <p className="text-gray-400">{t.contact.openingSoon}</p>
                   </div>
                 </div>
 
@@ -115,7 +117,7 @@ export default function Contact() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                   <div>
-                    <h5 className="text-xl mb-2">Телефон</h5>
+                    <h5 className="text-xl mb-2">{t.contact.phone}</h5>
                     <Link href="tel:+380990111999" className="text-gray-400 hover:text-red-500 transition-colors">+380990111999</Link>
                   </div>
                 </div>
@@ -125,7 +127,7 @@ export default function Contact() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                   <div>
-                    <h5 className="text-xl mb-2">Email</h5>
+                    <h5 className="text-xl mb-2">{t.contact.email}</h5>
                     <Link href="mailto:cherrylips.showbar@gmail.com" className="text-gray-400 hover:text-red-500 transition-colors">cherrylips.showbar@gmail.com</Link>
                   </div>
                 </div>
@@ -137,20 +139,20 @@ export default function Contact() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Ім&apos;я
+                    {t.contact.form.name}
                   </label>
                   <input
                     type="text"
                     id="name"
                     name="name"
                     className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-colors text-white"
-                    placeholder="Ваше ім'я"
+                    placeholder={t.contact.form.namePlaceholder}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium mb-2">
-                    Телефон *
+                    {t.contact.form.phone}
                   </label>
                   <input
                     type="tel"
@@ -158,20 +160,20 @@ export default function Contact() {
                     name="phone"
                     required
                     className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-colors text-white"
-                    placeholder="+380"
+                    placeholder={t.contact.form.phonePlaceholder}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    Додаткова інформація
+                    {t.contact.form.additionalInfo}
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     rows={4}
                     className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-colors text-white resize-none"
-                    placeholder="Ваше повідомлення"
+                    placeholder={t.contact.form.messagePlaceholder}
                   />
                 </div>
 
@@ -182,7 +184,7 @@ export default function Contact() {
                     className={`px-8 py-3 bg-[#8B0000] hover:bg-[#660000] text-white rounded-full text-lg font-medium tracking-wider shadow-lg transition-colors duration-300 ${isLoading ? 'opacity-75 cursor-not-allowed' : ''
                       }`}
                   >
-                    {isLoading ? 'Надсилання...' : 'НАДІСЛАТИ'}
+                    {isLoading ? t.contact.form.sending : t.contact.form.send}
                   </button>
                 </div>
               </form>

@@ -3,20 +3,23 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
+import { useTranslation } from '../../lib/context/TranslationContext'
+import LanguageSwitcher from './LanguageSwitcher'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
   const isMainPage = pathname === '/'
+  const { t } = useTranslation()
 
   const navItems = [
-    { name: 'ГОЛОВНА', href: '#home' },
-    { name: 'КЛУБ', href: '#club' },
-    { name: 'МЕНЮ', href: '#menu' },
-    { name: 'ВІДГУКИ', href: '#testimonials' },
-    // { name: 'НОВИНИ', href: '#news' },
-    { name: 'ВАКАНСІЇ', href: '/vacancies' },
-    { name: 'БРОНЮВАННЯ', href: '/book' },
+    { name: t.nav.home, href: '#home' },
+    { name: t.nav.club, href: '#club' },
+    { name: t.nav.menu, href: '#menu' },
+    { name: t.nav.testimonials, href: '#testimonials' },
+    // { name: t.nav.news, href: '#news' },
+    { name: t.nav.vacancies, href: '/vacancies' },
+    { name: t.nav.booking, href: '/book' },
   ]
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -47,7 +50,7 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <a href="#home" onClick={(e) => handleClick(e, '#home')} className="flex items-center space-x-2">
-              <Image src="/logo.png" alt="Cherry Lips Логотип" width={72} height={72} className="h-24 w-auto" />
+              <Image src="/logo.png" alt={t.meta.logoAlt} width={72} height={72} className="h-24 w-auto" />
             </a>
           </div>
 
@@ -65,14 +68,20 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          {/* Language Switcher - Desktop */}
+          <div className="hidden md:flex">
+            <LanguageSwitcher />
+          </div>
+
+          {/* Mobile menu button and language switcher */}
+          <div className="md:hidden flex items-center space-x-3">
+            <LanguageSwitcher />
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-900 focus:outline-none"
             >
-              <span className="sr-only">Відкрити меню</span>
-              <div className="relative w-6 h-6">
+              <span className="sr-only">{t.nav.openMenu}</span>
+              <div className="relative w-6">
                 <span className={`absolute block h-0.5 w-6 bg-current transform transition duration-500 ease-in-out ${isOpen ? 'rotate-45 translate-y-1.5' : '-translate-y-1'}`} />
                 <span className={`absolute block h-0.5 w-6 bg-current transform transition duration-500 ease-in-out ${isOpen ? 'opacity-0' : 'opacity-100'}`} />
                 <span className={`absolute block h-0.5 w-6 bg-current transform transition duration-500 ease-in-out ${isOpen ? '-rotate-45 -translate-y-1.5' : 'translate-y-1'}`} />
