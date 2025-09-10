@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Image from 'next/image';
 import { useTranslation } from '../../lib/context/TranslationContext';
 
 // Club operating hours (20:30 - 02:00) - used in generateTimeOptions
@@ -464,32 +465,42 @@ export default function BookPage() {
                                 </div>
                             ) : (
                                 <>
-                                    <div className="grid grid-cols-3 gap-4 mb-6">
-                                        {[1, 2, 3, 4, 5, 6].map((tableNumber) => {
+                                    <div className="flex flex-wrap justify-center gap-3 mb-6">
+                                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((tableNumber) => {
                                             const tableData = tableAvailability?.[tableNumber];
                                             const isAvailable = tableData?.available;
                                             const isSelected = selectedTable === tableNumber;
                                             const hasAvailableHours = tableData?.availableHours && tableData.availableHours.length > 0;
                                             const isFullyBooked = isAvailable === false || !hasAvailableHours;
+                                            const isVIP = tableNumber === 12;
 
                                             return (
                                                 <div
                                                     key={tableNumber}
                                                     onClick={() => !isFullyBooked && handleTableClick(tableNumber)}
                                                     className={`
-                                                        w-20 h-20 border-2 rounded-lg transition-all duration-200 flex items-center justify-center relative group
+                                                        w-16 h-16 border-2 rounded-lg transition-all duration-200 flex flex-col items-center justify-center relative group
                                                         ${isSelected
-                                                            ? 'border-red-500 bg-red-500/20 shadow-lg shadow-red-500/30 cursor-pointer'
+                                                            ? isVIP
+                                                                ? 'border-yellow-500 bg-yellow-500/20 shadow-lg shadow-yellow-500/30 cursor-pointer'
+                                                                : 'border-red-500 bg-red-500/20 shadow-lg shadow-red-500/30 cursor-pointer'
                                                             : isFullyBooked
                                                                 ? 'border-gray-600 bg-gray-800/50 cursor-not-allowed opacity-50'
-                                                                : 'border-white/20 bg-white/10 hover:border-red-500 hover:bg-white/20 cursor-pointer'
+                                                                : isVIP
+                                                                    ? 'border-yellow-500/50 bg-yellow-500/10 hover:border-yellow-500 hover:bg-yellow-500/20 cursor-pointer'
+                                                                    : 'border-white/20 bg-white/10 hover:border-red-500 hover:bg-white/20 cursor-pointer'
                                                         }
                                                     `}
-                                                    title={isFullyBooked ? t.booking.fullyBooked.replace('{number}', tableNumber.toString()) : `${t.booking.selectTable} ${tableNumber}`}
+                                                    title={isFullyBooked ? t.booking.fullyBooked.replace('{number}', tableNumber.toString()) : `${t.booking.selectTable} ${tableNumber}${isVIP ? ' (VIP)' : ''}`}
                                                 >
-                                                    <span className={`font-semibold ${isSelected ? 'text-red-500' : 'text-white'}`}>
+                                                    <span className={`font-semibold text-xs ${isSelected ? (isVIP ? 'text-yellow-500' : 'text-red-500') : 'text-white'}`}>
                                                         {tableNumber}
                                                     </span>
+                                                    {isVIP && (
+                                                        <span className={`text-xs font-bold ${isSelected ? 'text-yellow-500' : 'text-yellow-400'}`}>
+                                                            VIP
+                                                        </span>
+                                                    )}
 
                                                     {isFullyBooked && (
                                                         <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
@@ -507,17 +518,39 @@ export default function BookPage() {
                                         })}
                                     </div>
 
-                                    {selectedTable ? (
-                                        <p className="text-red-500 font-medium text-center">
+                                    {/* {selectedTable ? (
+                                        <p className={`font-medium text-center ${selectedTable === 12 ? 'text-yellow-500' : 'text-red-500'}`}>
                                             {t.booking.tableSelected.replace('{number}', selectedTable.toString())}
+                                            {selectedTable === 12 && ' (VIP)'}
                                         </p>
                                     ) : (
                                         <p className="text-gray-400 text-center text-sm">
                                             {t.booking.selectTablePrompt}
                                         </p>
-                                    )}
+                                    )} */}
                                 </>
                             )}
+
+                            {/* Stage Layout Visualization */}
+                            <div className="mt-8">
+                                <h5 className="text-lg font-serif mb-4 text-center text-gray-300">
+                                    {t.booking.stageLayout}
+                                </h5>
+                                <div className="bg-white/5 border border-white/10 rounded-lg p-4">
+                                    <div className="relative w-full max-w-md mx-auto">
+                                        <Image
+                                            src="/Stage.svg"
+                                            alt={t.booking.stageLayoutAlt}
+                                            width={400}
+                                            height={300}
+                                            className="w-full h-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
+                                        />
+                                    </div>
+                                    <p className="text-xs text-gray-400 text-center mt-3">
+                                        {t.booking.stageLayoutDescription}
+                                    </p>
+                                </div>
+                            </div>
                         </div>
 
                         {/* Booking Form */}
@@ -566,6 +599,7 @@ export default function BookPage() {
                                         name="date"
                                         value={formData.date}
                                         onChange={handleInputChange}
+                                        min={new Date().toISOString().split('T')[0]}
                                         className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-colors text-white"
                                         required
                                     />

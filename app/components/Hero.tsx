@@ -8,7 +8,7 @@ const Hero = () => {
   const { t } = useTranslation()
 
   return (
-    <div id="home" className="relative h-[calc(100vh-7rem)]">
+    <div id="home" className="relative min-h-[100vh] flex flex-col">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -23,17 +23,17 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
-        <div className="max-w-4xl mx-auto -mt-30">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-white mb-6 tracking-wider uppercase">
+      <div className="relative z-10 flex-1 flex items-center justify-center text-center px-4 py-16 md:py-24">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-white mb-6 tracking-wider uppercase">
             {t.hero.title}
           </h1>
-          <p className="text-lg md:text-xl text-white/90 mb-8 font-light leading-relaxed md:text-center text-left">
+          <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8 font-light leading-relaxed md:text-center text-left">
             {t.hero.description}
           </p>
           <Link
             href="/book"
-            className="inline-block px-8 py-3 text-lg font-medium bg-[#8B0000] hover:bg-[#660000] text-white transition-colors duration-300 rounded-full tracking-wider shadow-lg"
+            className="inline-block px-6 sm:px-8 py-3 text-base sm:text-lg font-medium bg-[#8B0000] hover:bg-[#660000] text-white transition-colors duration-300 rounded-full tracking-wider shadow-lg"
           >
             {t.hero.reserveTable}
           </Link>
@@ -41,7 +41,7 @@ const Hero = () => {
       </div>
 
       {/* Contact Info Footer */}
-      <div className="absolute bottom-0 z-20 left-0 right-0 bg-black/80 text-white py-4 md:py-6">
+      <div className="relative z-20 bg-black/80 text-white py-4 md:py-6 mt-auto">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             <div className="flex flex-col items-center p-2 md:text-left text-center">

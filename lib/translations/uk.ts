@@ -154,7 +154,10 @@ export const uk = {
       timeValidation: 'Час початку повинен бути раніше часу закінчення',
       bookingError: 'Помилка при створенні бронювання',
       networkError: 'Помилка мережі при створенні бронювання',
-    }
+    },
+    stageLayout: 'Планування сцени',
+    stageLayoutAlt: 'Планування сцени клубу',
+    stageLayoutDescription: 'Оберіть номер столика вище, щоб побачити доступність'
   },
 
   // Welcome section

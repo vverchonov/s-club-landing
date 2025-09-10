@@ -154,7 +154,10 @@ export const en = {
       timeValidation: 'Start time must be earlier than end time',
       bookingError: 'Error creating booking',
       networkError: 'Network error when creating booking',
-    }
+    },
+    stageLayout: 'Stage Layout',
+    stageLayoutAlt: 'Club stage layout',
+    stageLayoutDescription: 'Select a table number above to see availability'
   },
 
   // Welcome section
