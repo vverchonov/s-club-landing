@@ -35,7 +35,7 @@ export const en = {
       workingHours: 'OPENING HOURS',
       phone: 'PHONE',
       email: 'EMAIL',
-      openingSoon: 'Opening soon',
+      openingSoon: 'Opening 19.09 from 20:30-5:00',
     }
   },
 
@@ -89,7 +89,7 @@ export const en = {
     workingHours: 'Opening Hours',
     phone: 'Phone',
     email: 'Email',
-    openingSoon: 'Opening soon',
+    openingSoon: 'Opening 19.09 from 20:30-5:00',
     form: {
       name: 'Name',
       namePlaceholder: 'Your name',
@@ -181,7 +181,7 @@ export const en = {
   footer: {
     title: 'Cherry Lips showbar Uzhgorod',
     hours: 'Opening Hours',
-    openingSoon: 'Opening soon',
+    openingSoon: 'Opening 19.09 from 20:30-5:00',
     sitemap: 'Sitemap',
     sitemapItems: {
       home: 'Home',
