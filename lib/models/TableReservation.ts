@@ -5,7 +5,7 @@ const tableReservationSchema = new mongoose.Schema({
         type: Number,
         required: true,
         min: 1,
-        max: 12
+        max: 20  // Tables 1-12, Chairs 13-20
     },
     name: {
         type: String,

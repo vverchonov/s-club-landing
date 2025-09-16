@@ -344,7 +344,7 @@ export default function BookPage() {
                     date: formData.date,
                     startTime: formData.startTime,
                     endTime: formData.endTime,
-                    description: `Table ${selectedTable} booking for ${formData.name} (${formData.phone}) on ${formData.date} from ${formData.startTime} to ${formData.endTime}`
+                    description: `${selectedTable <= 12 ? 'Table' : 'Chair'} ${selectedTable <= 12 ? selectedTable : selectedTable - 12} booking for ${formData.name} (${formData.phone}) on ${formData.date} from ${formData.startTime} to ${formData.endTime}`
                 }),
             });
 
@@ -465,57 +465,118 @@ export default function BookPage() {
                                 </div>
                             ) : (
                                 <>
-                                    <div className="flex flex-wrap justify-center gap-3 mb-6">
-                                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((tableNumber) => {
-                                            const tableData = tableAvailability?.[tableNumber];
-                                            const isAvailable = tableData?.available;
-                                            const isSelected = selectedTable === tableNumber;
-                                            const hasAvailableHours = tableData?.availableHours && tableData.availableHours.length > 0;
-                                            const isFullyBooked = isAvailable === false || !hasAvailableHours;
-                                            const isVIP = tableNumber === 12;
+                                    {/* Tables Section */}
+                                    <div className="mb-8">
+                                        <h5 className="text-lg font-serif mb-4 text-center text-gray-300">
+                                            {t.booking.tables}
+                                        </h5>
+                                        <div className="flex flex-wrap justify-center gap-3 mb-6">
+                                            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((tableNumber) => {
+                                                const tableData = tableAvailability?.[tableNumber];
+                                                const isAvailable = tableData?.available;
+                                                const isSelected = selectedTable === tableNumber;
+                                                const hasAvailableHours = tableData?.availableHours && tableData.availableHours.length > 0;
+                                                const isFullyBooked = isAvailable === false || !hasAvailableHours;
+                                                const isVIP = tableNumber === 12;
 
-                                            return (
-                                                <div
-                                                    key={tableNumber}
-                                                    onClick={() => !isFullyBooked && handleTableClick(tableNumber)}
-                                                    className={`
+                                                return (
+                                                    <div
+                                                        key={tableNumber}
+                                                        onClick={() => !isFullyBooked && handleTableClick(tableNumber)}
+                                                        className={`
                                                         w-16 h-16 border-2 rounded-lg transition-all duration-200 flex flex-col items-center justify-center relative group
                                                         ${isSelected
-                                                            ? isVIP
-                                                                ? 'border-yellow-500 bg-yellow-500/20 shadow-lg shadow-yellow-500/30 cursor-pointer'
-                                                                : 'border-red-500 bg-red-500/20 shadow-lg shadow-red-500/30 cursor-pointer'
-                                                            : isFullyBooked
-                                                                ? 'border-gray-600 bg-gray-800/50 cursor-not-allowed opacity-50'
-                                                                : isVIP
-                                                                    ? 'border-yellow-500/50 bg-yellow-500/10 hover:border-yellow-500 hover:bg-yellow-500/20 cursor-pointer'
-                                                                    : 'border-white/20 bg-white/10 hover:border-red-500 hover:bg-white/20 cursor-pointer'
-                                                        }
+                                                                ? isVIP
+                                                                    ? 'border-yellow-500 bg-yellow-500/20 shadow-lg shadow-yellow-500/30 cursor-pointer'
+                                                                    : 'border-red-500 bg-red-500/20 shadow-lg shadow-red-500/30 cursor-pointer'
+                                                                : isFullyBooked
+                                                                    ? 'border-gray-600 bg-gray-800/50 cursor-not-allowed opacity-50'
+                                                                    : isVIP
+                                                                        ? 'border-yellow-500/50 bg-yellow-500/10 hover:border-yellow-500 hover:bg-yellow-500/20 cursor-pointer'
+                                                                        : 'border-white/20 bg-white/10 hover:border-red-500 hover:bg-white/20 cursor-pointer'
+                                                            }
                                                     `}
-                                                    title={isFullyBooked ? t.booking.fullyBooked.replace('{number}', tableNumber.toString()) : `${t.booking.selectTable} ${tableNumber}${isVIP ? ' (VIP)' : ''}`}
-                                                >
-                                                    <span className={`font-semibold text-xs ${isSelected ? (isVIP ? 'text-yellow-500' : 'text-red-500') : 'text-white'}`}>
-                                                        {tableNumber}
-                                                    </span>
-                                                    {isVIP && (
-                                                        <span className={`text-xs font-bold ${isSelected ? 'text-yellow-500' : 'text-yellow-400'}`}>
-                                                            VIP
+                                                        title={isFullyBooked ? t.booking.fullyBooked.replace('{number}', tableNumber.toString()) : `${t.booking.selectTable} ${tableNumber}${isVIP ? ' (VIP)' : ''}`}
+                                                    >
+                                                        <span className={`font-semibold text-xs ${isSelected ? (isVIP ? 'text-yellow-500' : 'text-red-500') : 'text-white'}`}>
+                                                            {tableNumber}
                                                         </span>
-                                                    )}
+                                                        {isVIP && (
+                                                            <span className={`text-xs font-bold ${isSelected ? 'text-yellow-500' : 'text-yellow-400'}`}>
+                                                                VIP
+                                                            </span>
+                                                        )}
 
-                                                    {isFullyBooked && (
-                                                        <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
-                                                    )}
+                                                        {isFullyBooked && (
+                                                            <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
+                                                        )}
 
-                                                    {/* Hover tooltip for fully booked tables */}
-                                                    {isFullyBooked && (
-                                                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black/90 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10">
-                                                            {t.booking.fullyBookedShort}
-                                                            <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black/90"></div>
+                                                        {/* Hover tooltip for fully booked tables */}
+                                                        {isFullyBooked && (
+                                                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black/90 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10">
+                                                                {t.booking.fullyBookedShort}
+                                                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black/90"></div>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+
+                                    {/* Chairs Section */}
+                                    <div className="mb-6 flex flex-col items-center">
+                                        <h5 className="text-lg font-serif mb-4 text-center text-gray-300">
+                                            {t.booking.chairs}
+                                        </h5>
+                                        <div className="mx-auto">
+                                            <div className="flex flex-wrap justify-center gap-3 mb-6 max-w-fit">
+                                                {[13, 14, 15, 16, 17, 18, 19, 20].map((chairNumber) => {
+                                                    const chairData = tableAvailability?.[chairNumber];
+                                                    const isAvailable = chairData?.available;
+                                                    const isSelected = selectedTable === chairNumber;
+                                                    const hasAvailableHours = chairData?.availableHours && chairData.availableHours.length > 0;
+                                                    const isFullyBooked = isAvailable === false || !hasAvailableHours;
+                                                    const chairDisplayNumber = chairNumber - 12; // Display as 1-8
+
+                                                    return (
+                                                        <div
+                                                            key={chairNumber}
+                                                            onClick={() => !isFullyBooked && handleTableClick(chairNumber)}
+                                                            className={`
+                                                            w-16 h-16 border-2 rounded-lg transition-all duration-200 flex flex-col items-center justify-center relative group
+                                                            ${isSelected
+                                                                    ? 'border-white bg-white/20 shadow-lg shadow-white/30 cursor-pointer'
+                                                                    : isFullyBooked
+                                                                        ? 'border-gray-600 bg-gray-800/50 cursor-not-allowed opacity-50'
+                                                                        : 'border-white/30 bg-white/10 hover:border-white/50 hover:bg-white/20 cursor-pointer'
+                                                                }
+                                                        `}
+                                                            title={isFullyBooked ? t.booking.fullyBooked.replace('{number}', `${t.booking.chair} ${chairDisplayNumber}`) : `${t.booking.selectChair} ${chairDisplayNumber}`}
+                                                        >
+                                                            <span className={`font-semibold text-xs ${isSelected ? 'text-white' : 'text-white'}`}>
+                                                                {chairDisplayNumber}
+                                                            </span>
+                                                            <span className={`text-xs ${isSelected ? 'text-white' : 'text-white/70'}`}>
+                                                                C
+                                                            </span>
+
+                                                            {isFullyBooked && (
+                                                                <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
+                                                            )}
+
+                                                            {/* Hover tooltip for fully booked chairs */}
+                                                            {isFullyBooked && (
+                                                                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black/90 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10">
+                                                                    {t.booking.fullyBookedShort}
+                                                                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black/90"></div>
+                                                                </div>
+                                                            )}
                                                         </div>
-                                                    )}
-                                                </div>
-                                            );
-                                        })}
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
                                     </div>
 
                                     {/* {selectedTable ? (
@@ -755,8 +816,12 @@ export default function BookPage() {
                             <h4 className="text-xl font-serif text-white mb-6 text-center">{t.booking.modal.details}</h4>
                             <div className="space-y-4">
                                 <div className="flex justify-between items-center py-2 border-b border-white/10">
-                                    <span className="text-gray-300">{t.booking.modal.table}</span>
-                                    <span className="text-white font-medium text-lg">№{reservationData.tableNumber}</span>
+                                    <span className="text-gray-300">{reservationData.tableNumber <= 12 ? t.booking.modal.table : t.booking.chair}</span>
+                                    <span className="text-white font-medium text-lg">
+                                        №{reservationData.tableNumber <= 12 ? reservationData.tableNumber : reservationData.tableNumber - 12}
+                                        {reservationData.tableNumber === 12 && ' (VIP)'}
+                                        {reservationData.tableNumber > 12 && ' (C)'}
+                                    </span>
                                 </div>
                                 <div className="flex justify-between items-center py-2 border-b border-white/10">
                                     <span className="text-gray-300">{t.booking.modal.name}</span>

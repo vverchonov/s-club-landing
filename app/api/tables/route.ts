@@ -92,10 +92,10 @@ export async function GET(request: NextRequest) {
             ]
         }).sort({ startTime: 1 });
 
-        // Process availability for each table (1-12)
+        // Process availability for each table (1-12) and chair (13-20)
         const tableAvailability: { [key: number]: { available: boolean; availableHours: string[]; reservations: Array<{ id: string; startTime: string; endTime: string; isConfirmed: boolean }> } } = {};
 
-        for (let tableNumber = 1; tableNumber <= 12; tableNumber++) {
+        for (let tableNumber = 1; tableNumber <= 20; tableNumber++) {
             const tableReservations = reservations.filter(res => res.tableNumber === tableNumber);
 
             if (tableReservations.length === 0) {
@@ -169,10 +169,10 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Validate table number
-        if (tableNumber < 1 || tableNumber > 12) {
+        // Validate table number (1-12 for tables, 13-20 for chairs)
+        if (tableNumber < 1 || tableNumber > 20) {
             return NextResponse.json(
-                { error: 'Invalid table number' },
+                { error: 'Invalid table/chair number' },
                 { status: 400 }
             );
         }
