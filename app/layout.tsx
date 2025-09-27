@@ -5,6 +5,7 @@ import './globals.css'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
+import PromoModal from './components/PromoModal'
 import { TranslationProvider } from '../lib/context/TranslationContext'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -84,6 +85,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <ScrollToTop />
+          <PromoModal />
         </TranslationProvider>
       </body>
     </html>
