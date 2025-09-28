@@ -88,7 +88,7 @@ export default function PromoModal() {
                     {/* Promo image */}
                     <div className="relative w-full h-auto">
                         <Image
-                            src="/promo.jpg"
+                            src="/promo.png"
                             alt="BDSM Party Promotion"
                             width={400}
                             height={600}
