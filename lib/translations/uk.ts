@@ -35,7 +35,7 @@ export const uk = {
       workingHours: 'ГОДИНИ РОБОТИ',
       phone: 'ТЕЛЕФОН',
       email: 'ПОШТА',
-      openingSoon: 'Працюємо з 18.09.\nз 20:30',
+      openingSoon: 'Неділя-четвер з 20:30 до 5:00, п\'ятниця-субота з 21:00 до 6:00',
     }
   },
 
@@ -89,7 +89,7 @@ export const uk = {
     workingHours: 'Години Роботи',
     phone: 'Телефон',
     email: 'Email',
-    openingSoon: 'Працюємо з 18.09.\nз 20:30',
+    openingSoon: 'Неділя-четвер з 20:30 до 5:00, п\'ятниця-субота з 21:00 до 6:00',
     form: {
       name: 'Ім\'я',
       namePlaceholder: 'Ваше ім\'я',
@@ -186,7 +186,7 @@ export const uk = {
   footer: {
     title: 'Cherry Lips showbar Ужгород',
     hours: 'Години Роботи',
-    openingSoon: 'Працюємо з 18.09.\nз 20:30',
+    openingSoon: 'Неділя-четвер з 20:30 до 5:00, п\'ятниця-субота з 21:00 до 6:00',
     sitemap: 'Карта Сайту',
     sitemapItems: {
       home: 'Головна',
