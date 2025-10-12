@@ -26,10 +26,10 @@ const Gallery = () => {
   const { t } = useTranslation()
   const isMobile = useMediaQuery('(max-width: 640px)')
   const allImages = [
-    '/gallery/17.png',
-    '/gallery/18.png',
-    '/gallery/19.png',
-    '/gallery/20.png',
+    '/gallery/17.PNG',
+    '/gallery/18.PNG',
+    '/gallery/19.PNG',
+    '/gallery/20.PNG',
     '/gallery/1.jpg',
     '/gallery/2.jpg',
     '/gallery/3.jpg',
