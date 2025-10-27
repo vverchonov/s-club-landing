@@ -6,6 +6,7 @@ import Testimonials from './components/Testimonials'
 
 import Contact from './components/Contact'
 import FadeIn from './components/FadeIn'
+import WalkThrough from './components/WalkThrough'
 // import News from './components/News'
 
 export default function Home() {
@@ -25,6 +26,9 @@ export default function Home() {
       </FadeIn>
       <FadeIn>
         <Testimonials />
+      </FadeIn>
+      <FadeIn>
+          <WalkThrough />
       </FadeIn>
       {/* <FadeIn>
         <News />

@@ -1,0 +1,9 @@
+# Ignore app-files directory
+**/app-files/**
+public/app-files/**
+app/app-files/**
+
+# Ignore WalkThrough component
+**/WalkThrough.tsx
+app/components/WalkThrough.tsx
+

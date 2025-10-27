@@ -77,7 +77,7 @@ export default function Contact() {
         <div className="relative max-w-6xl mx-auto px-4">
           <h2 className="text-red-500 text-xl mb-4 text-center uppercase">{t.contact.title}</h2>
           <h3 className="text-4xl md:text-5xl font-serif mb-16 text-center uppercase">
-            Звя&apos;жіться з нами
+            {t.contact.subtitle}
           </h3>
 
           <div className="grid md:grid-cols-2 gap-12 items-start">

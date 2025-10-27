@@ -79,6 +79,12 @@ export const en = {
     ]
   },
 
+  // Walkthrough section
+  walkthrough: {
+    title: 'VIRTUAL TOUR Cherry Lips showbar',
+    subtitle: 'EXPLORE OUR EXCLUSIVE ATMOSPHERE',
+  },
+
   // Contact section
   contact: {
     title: 'contact us',
