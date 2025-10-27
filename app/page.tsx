@@ -28,7 +28,9 @@ export default function Home() {
         <Testimonials />
       </FadeIn>
       <FadeIn>
+          <div className={'max-w-screen-2xl mx-auto'}>
           <WalkThrough />
+          </div>
       </FadeIn>
       {/* <FadeIn>
         <News />
