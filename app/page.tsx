@@ -25,12 +25,12 @@ export default function Home() {
         <Gallery />
       </FadeIn>
       <FadeIn>
-        <Testimonials />
-      </FadeIn>
-      <FadeIn>
           <div className={'max-w-screen-2xl mx-auto'}>
           <WalkThrough />
           </div>
+      </FadeIn>
+      <FadeIn>
+        <Testimonials />
       </FadeIn>
       {/* <FadeIn>
         <News />
